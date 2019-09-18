@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryGame", "MemoryGame\MemoryGame.csproj", "{5BBB19A6-A364-4308-84AE-1EADDB488754}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BBB19A6-A364-4308-84AE-1EADDB488754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBB19A6-A364-4308-84AE-1EADDB488754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BBB19A6-A364-4308-84AE-1EADDB488754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BBB19A6-A364-4308-84AE-1EADDB488754}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {468215CE-B300-4038-8852-8F907AB44DD7}
+	EndGlobalSection
+EndGlobal

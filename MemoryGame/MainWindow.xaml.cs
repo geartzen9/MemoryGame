@@ -24,5 +24,14 @@ namespace MemoryGame
         {
             InitializeComponent();
         }
+
+        private void newGameButton_Click(object sender, RoutedEventArgs args)
+        {
+            mainMenuScreen.Visibility = Visibility.Hidden;
+            newGameScreen.Visibility = Visibility.Visible;
+        }
     }
+
+   
+
 }

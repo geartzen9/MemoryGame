@@ -6,30 +6,7 @@
         xmlns:local="clr-namespace:MemoryGame"
         mc:Ignorable="d"
         Title="Memory Game" Height="450" Width="800">
-    <Canvas x:Name="parentCanvas">
-        <Canvas x:Name="mainMenuScreen">
-            <Grid Width="{Binding ActualWidth, ElementName=parentCanvas}" Height="{Binding ActualHeight, ElementName=parentCanvas}">
-                <StackPanel x:Name="menu" Width="200" Height="300" HorizontalAlignment="Center">
-                    <Image Source="Res/logo.png" Margin="0,0,0,25"></Image>
-                    <Button Width="100" Height="25" Margin="0,25,0,0" Name="newGame" Click="newGameButton_Click">Nieuw Spel</Button>
-                    <Button Width="100" Height="25" Margin="0,25,0,0" Name="continue" Click="continueButton_Click">Doorgaan</Button>
-                    <Button Width="100" Height="25" Margin="0,25,0,0">Scoreboard</Button>
-                    <Button Width="100" Height="25" Margin="0,25,0,0" Click="shutdownButton_Click">Afsluiten</Button>
-                </StackPanel>
-            </Grid>
-
-            <Button Width="50" Height="50" Canvas.Left="0" Background="Transparent" BorderThickness="0">
-                <Image Source="Res/Palette.png"></Image>
-            </Button>
-        </Canvas>
-
-        <Canvas x:Name="newGameScreen" Visibility="Hidden">
-
-        </Canvas>
-
-        <Canvas x:Name="continueScreen" Visibility="Hidden">
-            
-        </Canvas>
-    </Canvas>
-    
+    <Grid>
+        <Frame x:Name="parentFrame" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
 </Window>

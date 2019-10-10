@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Projecten\MemoryGame\MemoryGame\obj\Debug\
+C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\obj\Debug\
 MemoryGame
 none
 false
 DEBUG;TRACE
-C:\Projecten\MemoryGame\MemoryGame\App.xaml
-11151548125
+C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\App.xaml
+5192307829
 
-6-1520511202
+10974827685
 13-1505183044
-MainWindow.xaml;
+GameScreen.xaml;HighscoresScreen.xaml;MainMenu.xaml;MainWindow.xaml;NewGameScreen.xaml;
 
 True
 

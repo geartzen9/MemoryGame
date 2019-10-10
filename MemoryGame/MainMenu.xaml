@@ -1,0 +1,26 @@
+﻿<Page x:Class="MemoryGame.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MemoryGame"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainMenu">
+
+    <Canvas x:Name="parentCanvas">
+        <Grid Width="{Binding ActualWidth, ElementName=parentCanvas}" Height="{Binding ActualHeight, ElementName=parentCanvas}">
+            <StackPanel x:Name="menu" Width="200" Height="300" HorizontalAlignment="Center">
+                <Image Source="Res/logo.png" Margin="0,0,0,25"></Image>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="newGameButton_Click">Nieuw Spel</Button>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="continueButton_Click">Doorgaan</Button>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="highscoresButton_Click">Scoreboard</Button>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="shutdownButton_Click">Afsluiten</Button>
+            </StackPanel>
+        </Grid>
+
+        <Button Width="50" Height="50" Canvas.Left="0" Background="Transparent" BorderThickness="0" Margin="10,10">
+            <Image Source="Res/Palette.png"></Image>
+        </Button>
+    </Canvas>
+</Page>

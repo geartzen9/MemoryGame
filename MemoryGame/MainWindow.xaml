@@ -12,7 +12,7 @@
                 <StackPanel x:Name="menu" Width="200" Height="300" HorizontalAlignment="Center">
                     <Image Source="Res/logo.png" Margin="0,0,0,25"></Image>
                     <Button Width="100" Height="25" Margin="0,25,0,0" Name="newGame" Click="newGameButton_Click">Nieuw Spel</Button>
-                    <Button Width="100" Height="25" Margin="0,25,0,0">Doorgaan</Button>
+                    <Button Width="100" Height="25" Margin="0,25,0,0" Name="continue" Click="continueButton_Click">Doorgaan</Button>
                     <Button Width="100" Height="25" Margin="0,25,0,0">Scoreboard</Button>
                     <Button Width="100" Height="25" Margin="0,25,0,0" Click="shutdownButton_Click">Afsluiten</Button>
                 </StackPanel>
@@ -25,6 +25,10 @@
 
         <Canvas x:Name="newGameScreen" Visibility="Hidden">
 
+        </Canvas>
+
+        <Canvas x:Name="continueScreen" Visibility="Hidden">
+            
         </Canvas>
     </Canvas>
     

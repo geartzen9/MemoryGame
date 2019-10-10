@@ -30,6 +30,12 @@ namespace MemoryGame
             mainMenuScreen.Visibility = Visibility.Hidden;
             newGameScreen.Visibility = Visibility.Visible;
         }
+
+        private void continueButton_Click(object sender, RoutedEventArgs args)
+        {
+            mainMenuScreen.Visibility = Visibility.Hidden;
+            continueScreen.Visibility = Visibility.Visible;
+        }
         private void shutdownButton_Click(object sender, RoutedEventArgs args)
         {
             Application.Current.Shutdown();

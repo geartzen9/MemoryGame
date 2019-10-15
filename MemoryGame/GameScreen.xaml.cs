@@ -14,15 +14,17 @@ namespace MemoryGame
         Frame parentFrame;
         Player player1;
         Player player2;
+        string difficulty;
 
         // Constructor to begin a new game.
-        public GameScreen(Frame parentFrame, Player player1, Player player2)
+        public GameScreen(Frame parentFrame, Player player1, Player player2, string difficulty)
         {
             InitializeComponent();
 
             this.parentFrame = parentFrame;
             this.player1 = player1;
             this.player2 = player2;
+            this.difficulty = difficulty;
         }
 
         // Constructor to continue a previous game.
@@ -60,18 +62,11 @@ namespace MemoryGame
             if (player1.GetTurn() == true)
             {
                 player1NameLabel.Foreground = Brushes.Green;
+                player2NameLabel.Foreground = Brushes.Black;
             } else
             {
                 player1NameLabel.Foreground = Brushes.Black;
-            }
-
-            if (player2.GetTurn() == true)
-            {
                 player2NameLabel.Foreground = Brushes.Green;
-            }
-            else
-            {
-                player2NameLabel.Foreground = Brushes.Black;
             }
         }
 
@@ -81,11 +76,15 @@ namespace MemoryGame
             XmlWriter writer = XmlWriter.Create("Saves/memory.sav");
             writer.WriteStartElement("game");
 
+            writer.WriteStartElement("difficulty");
+            writer.WriteString(this.difficulty);
+            writer.WriteEndElement();
+
             // Save the properties of player 1.
-            SavePlayer(writer, "Henk Diever", 5, true);
+            SavePlayer(writer, player1);
 
             // Save the properties of player 2.
-            SavePlayer(writer, "Jan Zuur", 7, false);
+            SavePlayer(writer, player2);
 
             // Close the document.
             writer.WriteEndElement();
@@ -93,20 +92,20 @@ namespace MemoryGame
         }
 
         // Saves all properties of a player in the save file.
-        private void SavePlayer(XmlWriter writer, string playerName, int playerScore, bool playerTurn)
+        private void SavePlayer(XmlWriter writer, Player player)
         {
             writer.WriteStartElement("player");
 
             writer.WriteStartElement("name");
-            writer.WriteString(playerName);
+            writer.WriteString(player.GetName());
             writer.WriteEndElement();
 
             writer.WriteStartElement("score");
-            writer.WriteString(playerScore.ToString());
+            writer.WriteString(player.GetScore().ToString());
             writer.WriteEndElement();
 
             writer.WriteStartElement("turn");
-            writer.WriteString(playerTurn.ToString());
+            writer.WriteString(player.GetTurn().ToString());
             writer.WriteEndElement();
 
             writer.WriteEndElement();

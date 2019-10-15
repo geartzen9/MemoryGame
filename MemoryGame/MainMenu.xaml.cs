@@ -19,17 +19,17 @@ namespace MemoryGame
 
         private void newGameButton_Click(object sender, RoutedEventArgs args)
         {
-            this.parentFrame.Content = new NewGameScreen();
+            this.parentFrame.Navigate(new NewGameScreen());
         }
 
         private void continueButton_Click(object sender, RoutedEventArgs args)
         {
-            this.parentFrame.Content = new GameScreen();
+            this.parentFrame.Navigate(new GameScreen(this.parentFrame));
         }
 
         private void highscoresButton_Click(object sender, RoutedEventArgs args)
         {
-            this.parentFrame.Content = new HighscoresScreen();
+            this.parentFrame.Navigate(new HighscoresScreen());
         }
 
         private void shutdownButton_Click(object sender, RoutedEventArgs args)

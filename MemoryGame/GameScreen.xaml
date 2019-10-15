@@ -8,7 +8,28 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameScreen">
 
-    <Grid>
+    <Canvas x:Name="parentCanvas">
+        <Grid>
+            <Button HorizontalAlignment="Stretch">Biem</Button>
+        </Grid>
         
-    </Grid>
+        <Grid Width="{Binding ActualWidth, ElementName=parentCanvas}" Height="{Binding ActualHeight, ElementName=parentCanvas}">
+            <StackPanel Width="200" Height="235" HorizontalAlignment="Right">
+                <Image Source="Res/logo.png" Margin="25,0"></Image>
+                <Label HorizontalContentAlignment="Center" Margin="0,25,0,0" Name="player1NameLabel">Spelernaam 1</Label>
+                <Label HorizontalContentAlignment="Center">
+                    <TextBlock>
+                        Score: <Span><Run Name="player1ScoreLabel" Text="0"></Run></Span>
+                    </TextBlock>
+                </Label>
+                <Label HorizontalContentAlignment="Center" Margin="0,25,0,0" Name="player2NameLabel">Spelernaam 2</Label>
+                <Label HorizontalContentAlignment="Center">
+                    <TextBlock>
+                        Score: <Span><Run Name="player2ScoreLabel" Text="0"></Run></Span>
+                    </TextBlock>
+                </Label>
+                <Button Margin="25,25,25,0" Click="QuitButton_Click">Spel opslaan en afsluiten</Button>
+            </StackPanel>
+        </Grid>
+    </Canvas>
 </Page>

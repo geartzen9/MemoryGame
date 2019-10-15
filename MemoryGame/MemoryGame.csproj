@@ -97,6 +97,7 @@
     <Compile Include="NewGameScreen.xaml.cs">
       <DependentUpon>NewGameScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -128,5 +129,6 @@
   <ItemGroup>
     <Resource Include="Res\Palette.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

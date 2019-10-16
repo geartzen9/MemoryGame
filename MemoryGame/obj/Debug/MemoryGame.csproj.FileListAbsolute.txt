@@ -64,3 +64,25 @@ C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\obj\Debug
 C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\obj\Debug\HighscoresScreen.g.cs
 C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\obj\Debug\GameScreen.baml
 C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\obj\Debug\HighscoresScreen.baml
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\bin\Debug\MemoryGame.exe.config
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\bin\Debug\MemoryGame.exe
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\bin\Debug\MemoryGame.pdb
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.csprojAssemblyReference.cache
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\GameScreen.g.cs
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\HighscoresScreen.g.cs
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MainMenu.g.cs
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MainWindow.g.cs
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\NewGameScreen.g.cs
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\App.g.cs
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame_MarkupCompile.cache
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame_MarkupCompile.lref
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\GameScreen.baml
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\HighscoresScreen.baml
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MainMenu.baml
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MainWindow.baml
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\NewGameScreen.baml
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.g.resources
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.Properties.Resources.resources
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.csproj.GenerateResource.cache
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.exe
+C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.pdb

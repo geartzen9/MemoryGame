@@ -16,6 +16,10 @@ namespace MemoryGame
         Player player2;
         string difficulty;
 
+        MemoryGrid grid;
+        private int rowSize = 4;
+        private int colSize = 4;
+
         // Constructor to begin a new game.
         public GameScreen(Frame parentFrame, Player player1, Player player2, string difficulty)
         {
@@ -25,15 +29,19 @@ namespace MemoryGame
             this.player1 = player1;
             this.player2 = player2;
             this.difficulty = difficulty;
+
+            grid = new MemoryGrid(cardHolder, colSize, rowSize, 1);
         }
 
         // Constructor to continue a previous game.
         public GameScreen(Frame parentFrame)
         {
             InitializeComponent();
-
+            
             this.parentFrame = parentFrame;
             LoadData();
+
+            grid = new MemoryGrid(cardHolder, colSize, rowSize, 1);
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs args)

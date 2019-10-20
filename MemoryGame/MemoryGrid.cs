@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -14,6 +16,10 @@ namespace MemoryGame
         private int cols;
         private int rows;
         private int theme_nbr;
+
+        private List<Card> cards = new List<Card>();
+        private int clickedCardAmount = 0;
+        private int previousCardIndex;
 
         /// <summary>
         ///     Constructor to give the xaml grid rows and columns so the cards can be added
@@ -30,6 +36,7 @@ namespace MemoryGame
             this.theme_nbr = theme;
             InitializeGrid(cols, rows);
             AddImages();
+            ShowCards();
         }
 
         /// <summary>
@@ -55,48 +62,52 @@ namespace MemoryGame
         /// </summary>
         private void AddImages()
         {
-            List<ImageSource> images = GetImagesList();
+            for (int i = 0; i < rows * cols; i++)
+            {
+                int imgNr = i % ((cols * rows) / 2) + 1;
+                ImageSource frontImg = new BitmapImage(new Uri("Res/themes/theme_" + theme_nbr + "/" + imgNr + ".png", UriKind.Relative));
+                ImageSource backImg = new BitmapImage(new Uri("Res/themes/theme_" + theme_nbr + "/back.png", UriKind.Relative));
+                cards.Add(new Card(frontImg, backImg, imgNr));
+            }
+
+            Scramble(cards);
+        }
+
+        /// <summary>
+        ///     Adds the cards to the grid
+        /// </summary>
+        private void ShowCards()
+        {
+            grid.Children.Clear();
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    Image cardBack = new Image
-                    {
-                        Source = new BitmapImage(new Uri("Res/themes/theme_" + theme_nbr + "/back.png", UriKind.Relative)),
-                        Tag = images.First()
-                    };
-                    images.RemoveAt(0);
-                    cardBack.MouseDown += new MouseButtonEventHandler(CardClick);
-                    Grid.SetColumn(cardBack, col);
-                    Grid.SetRow(cardBack, row);
-                    grid.Children.Add(cardBack);
+                    Image card = new Image();
+                    card.MouseDown += new MouseButtonEventHandler(CardClick);
+                    card.Source = cards[col * cols + row].Show();
+                    card.Tag = col * cols + row;
+                    Grid.SetColumn(card, col);
+                    Grid.SetRow(card, row);
+                    grid.Children.Add(card);
                 }
             }
         }
 
         /// <summary>
-        ///     Gets the source of the card images and randomizes the order
+        ///     Scrambles the order of the cards
         /// </summary>
-        /// <returns>List of image sources</returns>
-        private List<ImageSource> GetImagesList()
+        /// <param name="cards">The list of cards</param>
+        private void Scramble(List<Card> cards)
         {
-            List<ImageSource> images = new List<ImageSource>();
-            for (int i = 0; i < cols * rows; i++)
-            {
-                int imageNr = i % ((cols * rows) / 2) + 1;
-                ImageSource source = new BitmapImage(new Uri("Res/themes/theme_" + theme_nbr + "/" + imageNr + ".png", UriKind.Relative));
-                images.Add(source);
-            }
-
             Random rnd = new Random();
-            for (int i = 0; i < images.Count(); i++)
+            for (int i = 0; i < cards.Count(); i++)
             {
-                int rand = rnd.Next(0, images.Count());
-                ImageSource tmp_img = images[i];
-                images[i] = images[rand];
-                images[rand] = tmp_img;
+                int rand = rnd.Next(0, cards.Count());
+                Card tmp_card = cards[i];
+                cards[i] = cards[rand];
+                cards[rand] = tmp_card;
             }
-            return images;
         }
 
         /// <summary>
@@ -106,9 +117,49 @@ namespace MemoryGame
         /// <param name="e">The event data</param>
         private void CardClick(object sender, MouseButtonEventArgs e)
         {
-            Image card = (Image)sender;
-            ImageSource front = (ImageSource)card.Tag;
-            card.Source = front;
+            if (clickedCardAmount < 2)
+            {
+                Image card = (Image)sender;
+                int index = (int)card.Tag;
+                card.Source = null;
+                cards[index].ShowFront();
+                clickedCardAmount++;
+
+                ShowCards();
+                //TODO: add some delay here to be able to see which card you picked
+
+                //TODO: make sure you can't press the same img twice to win
+
+                //TODO: make pointcount
+
+                if (clickedCardAmount == 2)
+                {
+                    if (cards[previousCardIndex].imgNr == cards[index].imgNr)
+                    {
+                        cards[index].MakeInvisible();
+                        cards[previousCardIndex].MakeInvisible();
+
+
+                        MessageBox.Show("Goed: " + cards[previousCardIndex].imgNr + " - " + cards[index].imgNr);
+                    }
+                    else
+                    {
+                        cards[index].ShowBack();
+                        cards[previousCardIndex].ShowBack();
+
+
+                        MessageBox.Show("Fout: " + cards[previousCardIndex].imgNr + " - " + cards[index].imgNr);
+                    }
+
+                    clickedCardAmount = 0;
+                }
+                else
+                {
+                    previousCardIndex = index;
+                }
+            }
+
+            ShowCards();
         }
     }
 }

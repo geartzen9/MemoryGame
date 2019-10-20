@@ -19,6 +19,7 @@ namespace MemoryGame
         MemoryGrid grid;
         private int rowSize = 4;
         private int colSize = 4;
+        private int theme_nbr = 1;
 
         // Constructor to begin a new game.
         public GameScreen(Frame parentFrame, Player player1, Player player2, string difficulty)
@@ -30,7 +31,7 @@ namespace MemoryGame
             this.player2 = player2;
             this.difficulty = difficulty;
 
-            grid = new MemoryGrid(cardHolder, colSize, rowSize, 1);
+            grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
         }
 
         // Constructor to continue a previous game.
@@ -41,7 +42,7 @@ namespace MemoryGame
             this.parentFrame = parentFrame;
             LoadData();
 
-            grid = new MemoryGrid(cardHolder, colSize, rowSize, 1);
+            grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs args)

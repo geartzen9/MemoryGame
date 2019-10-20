@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Card.cs" />
     <Compile Include="GameScreen.xaml.cs">
       <DependentUpon>GameScreen.xaml</DependentUpon>
     </Compile>

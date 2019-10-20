@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         
         <Grid Grid.Column="0" Name="cardHolder">
-            
+
         </Grid>
 
         <StackPanel Grid.Column="1" HorizontalAlignment="Right" Height="300">

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,7 +16,7 @@ namespace MemoryGame
         private int rows;
         private int theme_nbr;
 
-        private List<Card> cards = new List<Card>();
+        public List<Card> cards = new List<Card>();
         private int clickedCardAmount = 0;
         private int previousCardIndex;
 
@@ -134,13 +133,12 @@ namespace MemoryGame
 
                 if (clickedCardAmount == 2)
                 {
-                    if (cards[previousCardIndex].imgNr == cards[index].imgNr)
+                    if (cards[previousCardIndex].GetImgNumber() == cards[index].GetImgNumber())
                     {
-                        cards[index].MakeInvisible();
-                        cards[previousCardIndex].MakeInvisible();
+                        cards[index].SetVisibility(false);
+                        cards[previousCardIndex].SetVisibility(false);
 
-
-                        MessageBox.Show("Goed: " + cards[previousCardIndex].imgNr + " - " + cards[index].imgNr);
+                        MessageBox.Show("Goed: " + cards[previousCardIndex].GetImgNumber() + " - " + cards[index].GetImgNumber());
                     }
                     else
                     {
@@ -148,7 +146,7 @@ namespace MemoryGame
                         cards[previousCardIndex].ShowBack();
 
 
-                        MessageBox.Show("Fout: " + cards[previousCardIndex].imgNr + " - " + cards[index].imgNr);
+                        MessageBox.Show("Fout: " + cards[previousCardIndex].GetImgNumber() + " - " + cards[index].GetImgNumber());
                     }
 
                     clickedCardAmount = 0;

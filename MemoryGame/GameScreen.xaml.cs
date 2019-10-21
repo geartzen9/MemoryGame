@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml;
 
 namespace MemoryGame
@@ -40,9 +41,9 @@ namespace MemoryGame
             InitializeComponent();
             
             this.parentFrame = parentFrame;
-            LoadData();
-
             grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
+
+            LoadData();
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs args)
@@ -58,6 +59,7 @@ namespace MemoryGame
 
             var player1Element = saveFile.GetElementsByTagName("player").Item(0);
             var player2Element = saveFile.GetElementsByTagName("player").Item(1);
+            var cardsElement = saveFile.GetElementsByTagName("cards").Item(0);
 
             this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
             this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
@@ -77,6 +79,14 @@ namespace MemoryGame
                 player1NameLabel.Foreground = Brushes.Black;
                 player2NameLabel.Foreground = Brushes.Green;
             }
+
+            //for (int i = 0; i < grid.cards.Count; i++)
+            //{
+                //grid.cards[i].SetBackImage(new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(0).InnerText, UriKind.Relative)));
+                //grid.cards[i].SetFrontImage(new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(1).InnerText, UriKind.Relative)));
+                //grid.cards[i].SetClicked(Convert.ToBoolean(cardsElement.ChildNodes.Item(i).ChildNodes.Item(2).InnerText));
+                //grid.cards[i].SetVisibility(Convert.ToBoolean(cardsElement.ChildNodes.Item(i).ChildNodes.Item(3).InnerText));
+            //}
         }
 
         private void SaveData()
@@ -85,8 +95,22 @@ namespace MemoryGame
             XmlWriter writer = XmlWriter.Create("Saves/memory.sav");
             writer.WriteStartElement("game");
 
-            writer.WriteStartElement("difficulty");
-            writer.WriteString(this.difficulty);
+            WriteTag(writer, "difficulty", difficulty);
+
+            writer.WriteStartElement("cards");
+
+            for (int i = 0; i < grid.cards.Count; i++)
+            {
+                writer.WriteStartElement("card");
+
+                WriteTag(writer, "backImg", grid.cards[i].GetBackImage().ToString().Replace("pack://application:,,,/MemoryGame;component/", ""));
+                WriteTag(writer, "frontImg", grid.cards[i].GetFrontImage().ToString().Replace("pack://application:,,,/MemoryGame;component/", ""));
+                WriteTag(writer, "clicked", grid.cards[i].GetClicked().ToString());
+                WriteTag(writer, "visibility", grid.cards[i].GetVisibility().ToString());
+
+                writer.WriteEndElement();
+            }
+
             writer.WriteEndElement();
 
             // Save the properties of player 1.
@@ -105,18 +129,17 @@ namespace MemoryGame
         {
             writer.WriteStartElement("player");
 
-            writer.WriteStartElement("name");
-            writer.WriteString(player.GetName());
-            writer.WriteEndElement();
+            WriteTag(writer, "name", player.GetName());
+            WriteTag(writer, "score", player.GetScore().ToString());
+            WriteTag(writer, "turn", player.GetTurn().ToString());
 
-            writer.WriteStartElement("score");
-            writer.WriteString(player.GetScore().ToString());
             writer.WriteEndElement();
+        }
 
-            writer.WriteStartElement("turn");
-            writer.WriteString(player.GetTurn().ToString());
-            writer.WriteEndElement();
-
+        private void WriteTag(XmlWriter writer, string elementName, string value)
+        {
+            writer.WriteStartElement(elementName);
+            writer.WriteString(value);
             writer.WriteEndElement();
         }
     }

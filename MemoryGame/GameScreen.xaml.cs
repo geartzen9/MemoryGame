@@ -46,6 +46,24 @@ namespace MemoryGame
             LoadData();
         }
 
+        private void RestartButton_Click(object sender, RoutedEventArgs args)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je opnieuw wilt beginnen? Als je dit doet kom je niet op het scorebord.", "Opnieuw beginnen", MessageBoxButton.YesNo);
+
+            if (result.Equals(MessageBoxResult.Yes))
+            {
+                grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
+
+                player1.SetScore(0);
+                player2.SetScore(0);
+
+                player1.SetTurn(true);
+                player2.SetTurn(false);
+
+                UpdateLabels();
+            }
+        }
+
         private void QuitButton_Click(object sender, RoutedEventArgs args)
         {
             SaveData();
@@ -64,21 +82,7 @@ namespace MemoryGame
             this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
             this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
 
-            player1NameLabel.Content = player1.GetName();
-            player2NameLabel.Content = player2.GetName();
-
-            player1ScoreLabel.Text = player1.GetScore().ToString();
-            player2ScoreLabel.Text = player2.GetScore().ToString();
-
-            if (player1.GetTurn() == true)
-            {
-                player1NameLabel.Foreground = Brushes.Green;
-                player2NameLabel.Foreground = Brushes.Black;
-            } else
-            {
-                player1NameLabel.Foreground = Brushes.Black;
-                player2NameLabel.Foreground = Brushes.Green;
-            }
+            UpdateLabels();
 
             //for (int i = 0; i < grid.cards.Count; i++)
             //{
@@ -141,6 +145,26 @@ namespace MemoryGame
             writer.WriteStartElement(elementName);
             writer.WriteString(value);
             writer.WriteEndElement();
+        }
+
+        private void UpdateLabels()
+        {
+            player1NameLabel.Content = player1.GetName();
+            player2NameLabel.Content = player2.GetName();
+
+            player1ScoreLabel.Text = player1.GetScore().ToString();
+            player2ScoreLabel.Text = player2.GetScore().ToString();
+
+            if (player1.GetTurn() == true)
+            {
+                player1NameLabel.Foreground = Brushes.Green;
+                player2NameLabel.Foreground = Brushes.Black;
+            }
+            else
+            {
+                player1NameLabel.Foreground = Brushes.Black;
+                player2NameLabel.Foreground = Brushes.Green;
+            }
         }
     }
 }

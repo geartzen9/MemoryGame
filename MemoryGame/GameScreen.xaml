@@ -32,6 +32,8 @@
                         Score: <Span><Run Name="player2ScoreLabel" Text="0"></Run></Span>
                 </TextBlock>
             </Label>
+
+            <Button Margin="25,25,25,0" Click="RestartButton_Click">Spel opnieuw starten</Button>
             <Button Margin="25,25,25,0" Click="QuitButton_Click">Spel opslaan en afsluiten</Button>
         </StackPanel>
     </Grid>

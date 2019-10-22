@@ -18,9 +18,5 @@
                 <Button Width="100" Height="25" Margin="0,25,0,0" Click="shutdownButton_Click">Afsluiten</Button>
             </StackPanel>
         </Grid>
-
-        <Button Width="50" Height="50" Canvas.Left="0" Background="Transparent" BorderThickness="0" Margin="10,10">
-            <Image Source="Res/Palette.png"></Image>
-        </Button>
     </Canvas>
 </Page>

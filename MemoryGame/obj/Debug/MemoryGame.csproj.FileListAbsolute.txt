@@ -86,3 +86,11 @@ C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.Propertie
 C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.csproj.GenerateResource.cache
 C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.exe
 C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\MemoryGame.pdb
+D:\NHL\Memorygame\MemoryGame\obj\Debug\GameScreen.g.cs
+D:\NHL\Memorygame\MemoryGame\obj\Debug\HighscoresScreen.g.cs
+D:\NHL\Memorygame\MemoryGame\obj\Debug\MainMenu.g.cs
+D:\NHL\Memorygame\MemoryGame\obj\Debug\NewGameScreen.g.cs
+D:\NHL\Memorygame\MemoryGame\obj\Debug\GameScreen.baml
+D:\NHL\Memorygame\MemoryGame\obj\Debug\HighscoresScreen.baml
+D:\NHL\Memorygame\MemoryGame\obj\Debug\MainMenu.baml
+D:\NHL\Memorygame\MemoryGame\obj\Debug\NewGameScreen.baml

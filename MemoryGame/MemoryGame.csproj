@@ -131,7 +131,11 @@
   <ItemGroup>
     <Resource Include="Res\Palette.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Res\Theme Logo%27s\1.png" />
+    <Resource Include="Res\Theme Logo%27s\2.png" />
+    <Resource Include="Res\Theme Logo%27s\3.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\themes\theme_1\1.png" />
     <Resource Include="Res\themes\theme_1\10.png" />

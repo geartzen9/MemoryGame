@@ -24,5 +24,25 @@ namespace MemoryGame
         {
             InitializeComponent();
         }
+        //Close Theme
+        public void ClosePopupClicked(object sender, RoutedEventArgs e)
+        {
+            if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }
+        }
+        //Open Theme
+        public void ShowPopupOffsetClicked(object sender, RoutedEventArgs e)
+        {
+            if (!StandardPopup.IsOpen) { StandardPopup.IsOpen = true; }
+        }
+
+        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Get the ComboBox reference.
+            var comboBox = sender as ComboBox;
+
+            //Make the first item selected.
+            comboBox.SelectedIndex = 0;
+        }
+        //TODO: Logic for theme select
     }
 }

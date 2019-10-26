@@ -16,7 +16,7 @@ namespace MemoryGame
         private int rows;
         private int theme_nbr;
 
-        public List<Card> cards = new List<Card>();
+        private List<Card> cards = new List<Card>();
         private int clickedCardAmount = 0;
         private int previousCardIndex;
 
@@ -38,6 +38,17 @@ namespace MemoryGame
             ShowCards();
         }
 
+        public void ChangeCards(int selector, ImageSource backImg, ImageSource frontImg, bool clicked, bool visibility, int imgNr)
+        {
+            //int imgNr = selector % ((cols * rows) / 2) + 1;
+
+            Card card = new Card(frontImg, backImg, imgNr);
+            card.SetClicked(clicked);
+            card.SetVisibility(visibility);
+
+            cards.Add(card);
+        }
+
         /// <summary>
         ///     Give the xaml grid the right amount of rows and columns 
         /// </summary>
@@ -45,6 +56,10 @@ namespace MemoryGame
         /// <param name="rows">The amount of rows</param>
         private void InitializeGrid(int cols, int rows)
         {
+            grid.Children.Clear();
+            grid.RowDefinitions.Clear();
+            grid.ColumnDefinitions.Clear();
+
             for (int i = 0; i < rows; i++)
             {
                 grid.RowDefinitions.Add(new RowDefinition());
@@ -75,7 +90,7 @@ namespace MemoryGame
         /// <summary>
         ///     Adds the cards to the grid
         /// </summary>
-        private void ShowCards()
+        public void ShowCards()
         {
             grid.Children.Clear();
             for (int row = 0; row < rows; row++)
@@ -158,6 +173,16 @@ namespace MemoryGame
             }
 
             ShowCards();
+        }
+        
+        public List<Card> GetCards()
+        {
+            return cards;
+        }
+
+        public Grid GetGrid()
+        {
+            return grid;
         }
     }
 }

@@ -84,13 +84,23 @@ namespace MemoryGame
 
             UpdateLabels();
 
-            //for (int i = 0; i < grid.cards.Count; i++)
-            //{
-                //grid.cards[i].SetBackImage(new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(0).InnerText, UriKind.Relative)));
-                //grid.cards[i].SetFrontImage(new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(1).InnerText, UriKind.Relative)));
-                //grid.cards[i].SetClicked(Convert.ToBoolean(cardsElement.ChildNodes.Item(i).ChildNodes.Item(2).InnerText));
-                //grid.cards[i].SetVisibility(Convert.ToBoolean(cardsElement.ChildNodes.Item(i).ChildNodes.Item(3).InnerText));
-            //}
+            int cardsAmount = grid.GetCards().Count;
+            grid.GetGrid().Children.Clear();
+            grid.GetCards().Clear();
+
+            for (int i = 0; i < cardsAmount; i++)
+            {
+                grid.ChangeCards(
+                    i,
+                    new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(0).InnerText, UriKind.Relative)),
+                    new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(1).InnerText, UriKind.Relative)),
+                    Convert.ToBoolean(cardsElement.ChildNodes.Item(i).ChildNodes.Item(2).InnerText),
+                    Convert.ToBoolean(cardsElement.ChildNodes.Item(i).ChildNodes.Item(3).InnerText),
+                    Convert.ToInt32(cardsElement.ChildNodes.Item(i).ChildNodes.Item(4).InnerText)
+                );
+            }
+
+            grid.ShowCards();
         }
 
         private void SaveData()
@@ -103,14 +113,15 @@ namespace MemoryGame
 
             writer.WriteStartElement("cards");
 
-            for (int i = 0; i < grid.cards.Count; i++)
+            for (int i = 0; i < grid.GetCards().Count; i++)
             {
                 writer.WriteStartElement("card");
 
-                WriteTag(writer, "backImg", grid.cards[i].GetBackImage().ToString().Replace("pack://application:,,,/MemoryGame;component/", ""));
-                WriteTag(writer, "frontImg", grid.cards[i].GetFrontImage().ToString().Replace("pack://application:,,,/MemoryGame;component/", ""));
-                WriteTag(writer, "clicked", grid.cards[i].GetClicked().ToString());
-                WriteTag(writer, "visibility", grid.cards[i].GetVisibility().ToString());
+                WriteTag(writer, "backImg", grid.GetCards()[i].GetBackImage().ToString().Replace("pack://application:,,,/MemoryGame;component/", ""));
+                WriteTag(writer, "frontImg", grid.GetCards()[i].GetFrontImage().ToString().Replace("pack://application:,,,/MemoryGame;component/", ""));
+                WriteTag(writer, "clicked", grid.GetCards()[i].GetClicked().ToString());
+                WriteTag(writer, "visibility", grid.GetCards()[i].GetVisibility().ToString());
+                WriteTag(writer, "imgNr", grid.GetCards()[i].GetImgNumber().ToString());
 
                 writer.WriteEndElement();
             }

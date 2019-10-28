@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryGame.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace MemoryGame
     /// </summary>
     public partial class NewGameScreen : Page
     {
+        string theme;
         public NewGameScreen()
         {
             InitializeComponent();
@@ -42,6 +44,18 @@ namespace MemoryGame
 
             //Make the first item selected.
             comboBox.SelectedIndex = 0;
+        }
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get the ComboBox.
+            var comboBox = sender as ComboBox;
+
+            // 
+            int value = comboBox.SelectedIndex + 1;
+            MessageBox.Show("" + value);
+            Settings.Default["ThemeNumber"] = value;
+            Settings.Default.Save();
+            Console.WriteLine(Settings.Default["ThemeNumber"]);
         }
         //TODO: Logic for theme select
     }

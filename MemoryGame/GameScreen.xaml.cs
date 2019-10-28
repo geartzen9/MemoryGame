@@ -12,14 +12,11 @@ namespace MemoryGame
     public partial class GameScreen : Page
     {
         Frame parentFrame;
-        Player player1;
-        Player player2;
+        Player player1, player2;
         string difficulty;
 
         MemoryGrid grid;
-        private int rowSize = 4;
-        private int colSize = 4;
-        private int theme_nbr = 1;
+        private int rowSize = 4, colSize = 4, theme_nbr = 1;
 
         // Constructor to begin a new game.
         public GameScreen(Frame parentFrame, Player player1, Player player2, string difficulty)
@@ -119,5 +116,17 @@ namespace MemoryGame
 
             writer.WriteEndElement();
         }
+
+        /*public static void SetScoreBoard()
+        {
+            player1NameLabel.Content = "x";
+            player2NameLabel.Content = "x";
+
+            player1ScoreLabel.Text = "" + player1.GetScore();
+            player2ScoreLabel.Text = "" + player2.GetScore();
+
+            player1NameLabel.FontWeight = (player1.GetTurn() == true) ? FontWeights.Bold : FontWeights.Normal;
+            player2NameLabel.FontWeight = (player1.GetTurn() == true) ? FontWeights.Normal : FontWeights.Bold;
+        }*/
     }
 }

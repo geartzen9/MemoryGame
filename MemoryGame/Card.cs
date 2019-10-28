@@ -5,15 +5,16 @@ namespace MemoryGame
     class Card
     {
         private ImageSource frontImg, backImg;
-        private bool clicked, visibillity;
-        public int imgNr;
+        private bool clicked, visibility;
+        private int imgNumber;
+        
         public Card(ImageSource frontImgSource, ImageSource backImgSource, int imgNbr)
         {
             backImg = backImgSource;
             frontImg = frontImgSource;
-            imgNr = imgNbr;
+            imgNumber = imgNbr;
             clicked = false;
-            visibillity = true;
+            visibility = true;
         }
 
         public void ShowFront()
@@ -26,14 +27,9 @@ namespace MemoryGame
             clicked = false;
         }
 
-        public void MakeInvisible()
-        {
-            visibillity = false;
-        }
-
         public ImageSource Show()
         {
-            if(visibillity == true)
+            if(visibility == true)
             {
                 if(clicked == true)
                 {
@@ -50,5 +46,49 @@ namespace MemoryGame
             }
         }
 
+        public ImageSource GetFrontImage()
+        {
+            return frontImg;
+        }
+
+        public void SetFrontImage(ImageSource newFrontImg)
+        {
+            frontImg = newFrontImg;
+        }
+
+        public ImageSource GetBackImage()
+        {
+            return backImg;
+        }
+
+        public void SetBackImage(ImageSource newBackImg)
+        {
+            backImg = newBackImg;
+        }
+
+        public bool GetClicked()
+        {
+            return clicked;
+        }
+
+        public void SetClicked(bool newClicked)
+        {
+            clicked = newClicked;
+        }
+
+        public bool GetVisibility()
+        {
+            return visibility;
+        }
+
+        public void SetVisibility(bool newVisibility)
+        {
+            visibility = newVisibility;
+        }
+
+        public int GetImgNumber()
+        {
+            return imgNumber;
+        }
     }
 }

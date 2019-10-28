@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -42,6 +41,17 @@ namespace MemoryGame
             InitializeGrid(cols, rows);
             AddImages();
             ShowCards();
+        }
+
+        public void ChangeCards(int selector, ImageSource backImg, ImageSource frontImg, bool clicked, bool visibility, int imgNr)
+        {
+            //int imgNr = selector % ((cols * rows) / 2) + 1;
+
+            Card card = new Card(frontImg, backImg, imgNr);
+            card.SetClicked(clicked);
+            card.SetVisibility(visibility);
+
+            cards.Add(card);
         }
 
         /// <summary>
@@ -86,7 +96,7 @@ namespace MemoryGame
         /// <summary>
         ///     Adds the cards to the grid
         /// </summary>
-        private void ShowCards()
+        public void ShowCards()
         {
             grid.Children.Clear();
             for (int row = 0; row < rows; row++)
@@ -141,10 +151,10 @@ namespace MemoryGame
 
                 if (clickedCardAmount == 2)
                 {
-                    if (cards[previousCardIndex].imgNr == cards[index].imgNr)
+                    if (cards[previousCardIndex].GetImgNumber() == cards[index].GetImgNumber())
                     {
-                        cards[index].MakeInvisible();
-                        cards[previousCardIndex].MakeInvisible();
+                        cards[index].SetVisibility(false);
+                        cards[previousCardIndex].SetVisibility(false);
 
                         if (comboTurns % 3 == 0)
                             bonusPoints += 10;
@@ -182,11 +192,7 @@ namespace MemoryGame
                             player2.SetTurn(false);
                         }
 
-                        comboTurns = 1;
-                        bonusPoints = 0;
-
-                        /*MessageBox.Show("Fout: " + cards[previousCardIndex].imgNr + " - " + cards[index].imgNr);*/
-                        MessageBox.Show("Fout: puntenaantal 1 = " + player1.GetScore() + " puntenaantal 2 = " + player2.GetScore());
+                        MessageBox.Show("Fout: " + cards[previousCardIndex].imgNr + " - " + cards[index].imgNr);
                     }
 
                     clickedCardAmount = 0;
@@ -201,6 +207,16 @@ namespace MemoryGame
             /*GameScreen.SetScoreBoard();*/
             ShowCards();
 
+        }
+        
+        public List<Card> GetCards()
+        {
+            return cards;
+        }
+
+        public Grid GetGrid()
+        {
+            return grid;
         }
     }
 }

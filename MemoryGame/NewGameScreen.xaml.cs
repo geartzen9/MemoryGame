@@ -43,6 +43,5 @@ namespace MemoryGame
             //Make the first item selected.
             comboBox.SelectedIndex = 0;
         }
-        //TODO: Logic for theme select
     }
 }

@@ -17,7 +17,7 @@ namespace MemoryGame
         string difficulty;
 
         MemoryGrid grid;
-        private int rowSize = 4, colSize = 4, theme_nbr = 1;
+        private int rowSize = 4, colSize = 4;
 
         // Constructor to begin a new game.
         public GameScreen(Frame parentFrame, Player player1, Player player2, string difficulty)
@@ -29,7 +29,7 @@ namespace MemoryGame
             this.player2 = player2;
             this.difficulty = difficulty;
 
-            grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
+            grid = new MemoryGrid(this, cardHolder, player1, player2, colSize, rowSize);
         }
 
         // Constructor to continue a previous game.
@@ -38,7 +38,16 @@ namespace MemoryGame
             InitializeComponent();
             
             this.parentFrame = parentFrame;
-            grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
+
+            XmlDocument saveFile = new XmlDocument();
+            saveFile.Load("Saves/memory.sav");
+
+            var player1Element = saveFile.GetElementsByTagName("player").Item(0);
+            var player2Element = saveFile.GetElementsByTagName("player").Item(1);
+            this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
+            this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
+
+            grid = new MemoryGrid(this, cardHolder, player1, player2, colSize, rowSize);
 
             LoadData();
         }
@@ -49,7 +58,7 @@ namespace MemoryGame
 
             if (result.Equals(MessageBoxResult.Yes))
             {
-                grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
+                grid = new MemoryGrid(this, cardHolder, player1, player2, colSize, rowSize);
 
                 player1.SetScore(0);
                 player2.SetScore(0);
@@ -57,7 +66,7 @@ namespace MemoryGame
                 player1.SetTurn(true);
                 player2.SetTurn(false);
 
-                UpdateLabels();
+                UpdateLabels(player1, player2);
             }
         }
 
@@ -79,7 +88,7 @@ namespace MemoryGame
             this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
             this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
 
-            UpdateLabels();
+            UpdateLabels(player1, player2);
 
             int cardsAmount = grid.GetCards().Count;
             grid.GetGrid().Children.Clear();
@@ -155,7 +164,7 @@ namespace MemoryGame
             writer.WriteEndElement();
         }
 
-        private void UpdateLabels()
+        public void UpdateLabels(Player player1, Player player2)
         {
             player1NameLabel.Content = player1.GetName();
             player2NameLabel.Content = player2.GetName();
@@ -175,16 +184,5 @@ namespace MemoryGame
             }
         }
 
-        /*public static void SetScoreBoard()
-        {
-            player1NameLabel.Content = "x";
-            player2NameLabel.Content = "x";
-
-            player1ScoreLabel.Text = "" + player1.GetScore();
-            player2ScoreLabel.Text = "" + player2.GetScore();
-
-            player1NameLabel.FontWeight = (player1.GetTurn() == true) ? FontWeights.Bold : FontWeights.Normal;
-            player2NameLabel.FontWeight = (player1.GetTurn() == true) ? FontWeights.Normal : FontWeights.Bold;
-        }*/
     }
 }

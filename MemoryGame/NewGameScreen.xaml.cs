@@ -21,12 +21,31 @@ namespace MemoryGame
     /// </summary>
     public partial class NewGameScreen : Page
     {
-        string theme;
-        public NewGameScreen()
+        Frame parentFrame;
+
+        public NewGameScreen(Frame parentFrame)
         {
             InitializeComponent();
+
+            this.parentFrame = parentFrame;
         }
-        //Close Theme
+
+        private void startButton_Click(object sender , RoutedEventArgs e)
+        {           
+            if (string.IsNullOrEmpty(InputP1.Text) || string.IsNullOrEmpty(InputP2.Text))
+            {
+                MessageBox.Show("Vul beide namen in om te kunnen spelen");
+                return;
+            }
+            
+            string difficulty = Moeilijkheidsgraad.SelectedValue.ToString();            
+            Player player1 = new Player(InputP1.Text, 0, true);
+            Player player2 = new Player(InputP2.Text, 0, true);
+            this.parentFrame.Navigate(new GameScreen(parentFrame, player1, player2, difficulty));
+        }
+       
+            
+            //Close Theme
         public void ClosePopupClicked(object sender, RoutedEventArgs e)
         {
             if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }

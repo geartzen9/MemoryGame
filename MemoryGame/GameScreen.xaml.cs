@@ -20,6 +20,7 @@ namespace MemoryGame
         MemoryGrid grid;
         private int rowSize = 4;
         private int colSize = 4;
+        //TODO: zorg dat dit niet standaard defined is
         private int theme_nbr = 1;
 
         // Constructor to begin a new game.
@@ -32,7 +33,25 @@ namespace MemoryGame
             this.player2 = player2;
             this.difficulty = difficulty;
 
+            switch (difficulty)
+            {
+                case "Makkelijk":
+                    rowSize = 4;
+                    colSize = 4;
+                    break;
+                case "Normaal":
+                    rowSize = 6;
+                    colSize = 6;
+                    break;
+                case "Moeilijk":
+                    rowSize = 8;
+                    colSize = 8;
+                    break;                
+            }
+
             grid = new MemoryGrid(cardHolder, colSize, rowSize, theme_nbr);
+
+           
         }
 
         // Constructor to continue a previous game.

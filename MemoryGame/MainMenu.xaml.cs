@@ -19,7 +19,7 @@ namespace MemoryGame
 
         private void newGameButton_Click(object sender, RoutedEventArgs args)
         {
-            this.parentFrame.Navigate(new NewGameScreen());
+            this.parentFrame.Navigate(new NewGameScreen(this.parentFrame));
         }
 
         private void continueButton_Click(object sender, RoutedEventArgs args)

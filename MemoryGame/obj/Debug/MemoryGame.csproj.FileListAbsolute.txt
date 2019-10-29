@@ -94,3 +94,11 @@ D:\NHL\Memorygame\MemoryGame\obj\Debug\GameScreen.baml
 D:\NHL\Memorygame\MemoryGame\obj\Debug\HighscoresScreen.baml
 D:\NHL\Memorygame\MemoryGame\obj\Debug\MainMenu.baml
 D:\NHL\Memorygame\MemoryGame\obj\Debug\NewGameScreen.baml
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\GameScreen.g.cs
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\HighscoresScreen.g.cs
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\MainMenu.g.cs
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\NewGameScreen.g.cs
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\GameScreen.baml
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\HighscoresScreen.baml
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\MainMenu.baml
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\NewGameScreen.baml

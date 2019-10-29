@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MemoryGame.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -12,13 +12,10 @@ namespace MemoryGame
     class MemoryGrid
     {
         private Grid grid;
-        private int cols;
-        private int rows;
-        private int theme_nbr;
-
         private List<Card> cards = new List<Card>();
-        private int clickedCardAmount = 0;
-        private int previousCardIndex;
+        private GameScreen gameScreen;
+        private Player player1, player2;
+        private int cols, rows, theme_nbr, bonusPoints = 0, streak = 1, previousCardIndex, clickedCardAmount = 0;
 
         /// <summary>
         ///     Constructor to give the xaml grid rows and columns so the cards can be added
@@ -27,12 +24,16 @@ namespace MemoryGame
         /// <param name="cols">The amount of cols</param>
         /// <param name="rows">The amount of rows</param>
         /// <param name="theme">The number of the chosen theme</param>
-        public MemoryGrid(Grid grid, int cols, int rows, int theme)
+        public MemoryGrid(GameScreen gameScreen, Grid grid, Player player1, Player player2, int cols, int rows)
         {
+            this.gameScreen = gameScreen;
             this.grid = grid;
+            this.player1 = player1;
+            this.player2 = player2;
             this.cols = cols;
             this.rows = rows;
-            this.theme_nbr = theme;
+            this.theme_nbr = Convert.ToInt32(Settings.Default["ThemeNumber"]);
+
             InitializeGrid(cols, rows);
             AddImages();
             ShowCards();
@@ -40,8 +41,6 @@ namespace MemoryGame
 
         public void ChangeCards(int selector, ImageSource backImg, ImageSource frontImg, bool clicked, bool visibility, int imgNr)
         {
-            //int imgNr = selector % ((cols * rows) / 2) + 1;
-
             Card card = new Card(frontImg, backImg, imgNr);
             card.SetClicked(clicked);
             card.SetVisibility(visibility);
@@ -72,7 +71,7 @@ namespace MemoryGame
         }
 
         /// <summary>
-        ///     Add the cards/images to the grid
+        ///     Makes a list of cards
         /// </summary>
         private void AddImages()
         {
@@ -81,6 +80,7 @@ namespace MemoryGame
                 int imgNr = i % ((cols * rows) / 2) + 1;
                 ImageSource frontImg = new BitmapImage(new Uri("Res/themes/theme_" + theme_nbr + "/" + imgNr + ".png", UriKind.Relative));
                 ImageSource backImg = new BitmapImage(new Uri("Res/themes/theme_" + theme_nbr + "/back.png", UriKind.Relative));
+                /*ImageSource backImg = frontImg;*/
                 cards.Add(new Card(frontImg, backImg, imgNr));
             }
 
@@ -131,20 +131,16 @@ namespace MemoryGame
         /// <param name="e">The event data</param>
         private void CardClick(object sender, MouseButtonEventArgs e)
         {
-            if (clickedCardAmount < 2)
+            Image card = (Image)sender;
+            int index = (int)card.Tag;
+
+            if(index != previousCardIndex)
             {
-                Image card = (Image)sender;
-                int index = (int)card.Tag;
                 card.Source = null;
                 cards[index].ShowFront();
                 clickedCardAmount++;
 
                 ShowCards();
-                //TODO: add some delay here to be able to see which card you picked
-
-                //TODO: make sure you can't press the same img twice to win
-
-                //TODO: make pointcount
 
                 if (clickedCardAmount == 2)
                 {
@@ -153,18 +149,43 @@ namespace MemoryGame
                         cards[index].SetVisibility(false);
                         cards[previousCardIndex].SetVisibility(false);
 
-                        MessageBox.Show("Goed: " + cards[previousCardIndex].GetImgNumber() + " - " + cards[index].GetImgNumber());
+                        if (streak % 3 == 0)
+                            bonusPoints += 10;
+
+                        if (player1.GetTurn() == true)
+                        {
+                            player1.SetScore(player1.GetScore() + 10 + bonusPoints);
+                        }
+                        else
+                        {
+                            player2.SetScore(player2.GetScore() + 10 + bonusPoints);
+                        }
+
+                        streak++;
+
+                        //TODO: add some delay here to be able to see which card you picked
                     }
                     else
                     {
                         cards[index].ShowBack();
                         cards[previousCardIndex].ShowBack();
+                        bonusPoints = 0;
+                        streak = 0;
 
-
-                        MessageBox.Show("Fout: " + cards[previousCardIndex].GetImgNumber() + " - " + cards[index].GetImgNumber());
+                        if (player1.GetTurn() == true)
+                        {
+                            player1.SetTurn(false);
+                            player2.SetTurn(true);
+                        }
+                        else
+                        {
+                            player1.SetTurn(true);
+                            player2.SetTurn(false);
+                        }
                     }
 
                     clickedCardAmount = 0;
+                    gameScreen.UpdateLabels(player1, player2);
                 }
                 else
                 {
@@ -173,6 +194,7 @@ namespace MemoryGame
             }
 
             ShowCards();
+
         }
         
         public List<Card> GetCards()

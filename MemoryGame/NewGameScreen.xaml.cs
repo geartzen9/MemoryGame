@@ -69,13 +69,10 @@ namespace MemoryGame
             // Get the ComboBox.
             var comboBox = sender as ComboBox;
 
-            // 
             int value = comboBox.SelectedIndex + 1;
-            MessageBox.Show("" + value);
             Settings.Default["ThemeNumber"] = value;
             Settings.Default.Save();
             Console.WriteLine(Settings.Default["ThemeNumber"]);
         }
-        //TODO: Logic for theme select
     }
 }

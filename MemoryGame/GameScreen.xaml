@@ -20,7 +20,7 @@
 
         <StackPanel Grid.Column="1" HorizontalAlignment="Right" Height="300">
             <Image Source="Res/logo.png" Margin="25,0"></Image>
-            <Label HorizontalContentAlignment="Center" Margin="0,25,0,0" Name="player1NameLabel">Spelernaam 1</Label>
+            <Label HorizontalContentAlignment="Center" Margin="0,25,0,0" Name="player1NameLabel" x:FieldModifier="public">Spelernaam 1</Label>
             <Label HorizontalContentAlignment="Center">
                 <TextBlock>
                     Score: <Span><Run Name="player1ScoreLabel" Text="0"></Run></Span>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryGame.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
@@ -11,20 +12,10 @@ namespace MemoryGame
     class MemoryGrid
     {
         private Grid grid;
-        private int cols, rows, theme_nbr;
-
         private List<Card> cards = new List<Card>();
-        private int clickedCardAmount = 0;
-        private int previousCardIndex;
-
-        /*private Player player1 = new Player("Thijs", 0, true);
-        private Player player2 = new Player("Gerrit", 0, false);*/
-        Player player1;
-        Player player2;
-
-        private int bonusPoints = 0, streak = 1;
-
         private GameScreen gameScreen;
+        private Player player1, player2;
+        private int cols, rows, theme_nbr, bonusPoints = 0, streak = 1, previousCardIndex, clickedCardAmount = 0;
 
         /// <summary>
         ///     Constructor to give the xaml grid rows and columns so the cards can be added
@@ -41,9 +32,7 @@ namespace MemoryGame
             this.player2 = player2;
             this.cols = cols;
             this.rows = rows;
-            //TODO: Theme number uit settings halen
-            this.theme_nbr = 1;
-            
+            this.theme_nbr = Convert.ToInt32(Settings.Default["ThemeNumber"]);
 
             InitializeGrid(cols, rows);
             AddImages();

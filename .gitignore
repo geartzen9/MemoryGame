@@ -12,3 +12,9 @@ MemoryGame/bin/Debug/
 *.cache
 
 MemoryGame/obj/Debug/
+
+*.pdb
+
+*.resources
+
+*.lref

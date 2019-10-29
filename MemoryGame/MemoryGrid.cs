@@ -37,6 +37,7 @@ namespace MemoryGame
             InitializeGrid(cols, rows);
             AddImages();
             ShowCards();
+            gameScreen.UpdateLabels(player1, player2);
         }
 
         public void ChangeCards(int selector, ImageSource backImg, ImageSource frontImg, bool clicked, bool visibility, int imgNr)

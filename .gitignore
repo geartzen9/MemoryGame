@@ -3,8 +3,6 @@
 
 *.exe
 
-MemoryGame/bin/Debug/
-
 .vs/MemoryGame/v16/Server/sqlite3/
 
 .vs/MemoryGame/v16/

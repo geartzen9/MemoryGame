@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MemoryGame
 {
@@ -41,6 +42,8 @@ namespace MemoryGame
                 {
                     TextBlock text = new TextBlock();
                     text.TextAlignment = TextAlignment.Center;
+                    text.FontFamily = new FontFamily ("Tempus Sans ITC");
+                    text.Foreground = new SolidColorBrush(Colors.White);
 
                     if (col == 0)
                         text.Text = (row + 1).ToString();

@@ -259,5 +259,8 @@
   <ItemGroup>
     <Resource Include="Res\themes\theme_2\back.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\memoryBackground.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

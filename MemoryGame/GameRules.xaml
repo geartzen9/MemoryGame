@@ -10,13 +10,13 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="30" Margin="0,30,0,0">Spelregels</TextBlock>
-            <TextBlock Width="500" Height="320" TextWrapping="Wrap" LineHeight="20" Margin="0,20,0,0">Deze memory game word gespeeld met twee spelers.<LineBreak></LineBreak>
+            <TextBlock FontFamily="Showcard Gothic" FontSize="36" HorizontalAlignment="Center" Margin="0,25,0,0">Spelregels</TextBlock>
+            <TextBlock Background="White" Width="500" Height="340" TextWrapping="Wrap" LineHeight="20" Margin="0,20,0,0" FontFamily="Tempus Sans ITC" FontSize="14">Deze memory game word gespeeld met twee spelers.<LineBreak></LineBreak>
                 Beide spelers vullen hun naam in en kiezen een moeilijkheidsgraad <LineBreak></LineBreak>
                 De moeilijkheidsgraden bestaan uit:<LineBreak></LineBreak>
-                -Makkelijk is een 4 x 4 kaart speelveld(16 kaarten)<LineBreak></LineBreak>
-                -Normaal is een 6 x 6 kaart speelveeld(36 kaarten)  <LineBreak></LineBreak>
-                -Moeilijk is een 8 x 8 kaar speelveld(64 kaarten)<LineBreak></LineBreak>
+                -Makkelijk is een 4 x 4 kaart speelveld (16 kaarten)<LineBreak></LineBreak>
+                -Normaal is een 6 x 6 kaart speelveeld (36 kaarten)  <LineBreak></LineBreak>
+                -Moeilijk is een 8 x 8 kaar speelveld (64 kaarten)<LineBreak></LineBreak>
                 Dan drukt u op start en begin het spel<LineBreak></LineBreak>
                 Speler 1 begint met het omdraaien van 2 kaarten <LineBreak></LineBreak> 
                 Als de kaarten zijn omgedraaid blijven ze nog even liggen zodat je de kaart kan onthouden<LineBreak></LineBreak>
@@ -27,7 +27,7 @@
             </TextBlock>
 
         </StackPanel>
-        <Button Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="returntoMenu_Button">
+        <Button Margin="20,15,0,0" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="returntoMenu_Button">
             <StackPanel>
                 <Image Source="Res/Back.png"></Image>
             </StackPanel>

@@ -9,15 +9,18 @@
       Title="MainMenu">
 
     <Canvas x:Name="parentCanvas">
+        <Canvas.Background>
+            <ImageBrush ImageSource="res/memoryBackground.png"/>
+        </Canvas.Background>
         <Grid Width="{Binding ActualWidth, ElementName=parentCanvas}" Height="{Binding ActualHeight, ElementName=parentCanvas}">
             <StackPanel x:Name="menu" Width="200" Height="300" HorizontalAlignment="Center">
                 <Image Source="Res/logo.png" Margin="0,0,0,25"></Image>
-                <Button Width="100" Height="25" Margin="0,25,0,0" Click="newGameButton_Click">Nieuw Spel</Button>
-                <Button Width="100" Height="25" Margin="0,25,0,0" Click="continueButton_Click">Doorgaan</Button>
-                <Button Width="100" Height="25" Margin="0,25,0,0" Click="highscoresButton_Click">Scoreboard</Button>
-                <Button Width="100" Height="25" Margin="0,25,0,0" Click="shutdownButton_Click">Afsluiten</Button>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="newGameButton_Click" FontFamily="Tempus Sans ITC" FontSize="16" FontWeight="Bold">Nieuw Spel</Button>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="continueButton_Click" FontFamily="Tempus Sans ITC" FontSize="16" FontWeight="Bold">Doorgaan</Button>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="highscoresButton_Click" FontFamily="Tempus Sans ITC" FontSize="16" FontWeight="Bold">Scoreboard</Button>
+                <Button Width="100" Height="25" Margin="0,25,0,0" Click="shutdownButton_Click" FontFamily="Tempus Sans ITC" FontSize="16" FontWeight="Bold">Afsluiten</Button>
             </StackPanel>
-            <Button Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Background="White" Click="gameRulesButton_Click">
+            <Button Margin="0,20,20,0" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Background="White" Click="gameRulesButton_Click">
                 <StackPanel>
                     <Image Source="Res/Rules.png"></Image>
                 </StackPanel>

@@ -179,12 +179,10 @@
     <Resource Include="Res\themes\theme_1\back.png" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
     <Resource Include="Res\Rules.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Back.png" />
-=======
     <Resource Include="Res\themes\theme_2\1.png" />
     <Resource Include="Res\themes\theme_2\10.png" />
     <Resource Include="Res\themes\theme_2\11.png" />
@@ -260,7 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\themes\theme_2\back.png" />
->>>>>>> Stashed changes
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

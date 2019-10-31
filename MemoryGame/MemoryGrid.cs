@@ -171,7 +171,14 @@ namespace MemoryGame
                     pairs--;
                     if (pairs == 0)
                     {
-                        MessageBox.Show("JIJ WINT PIKKURT");
+                        //TODO: Save scores to highscore page
+                        string winText = (player1.GetScore() > player2.GetScore())? player1.GetName() + " wins with: " + player1.GetScore() + " points!" : player1.GetName() + " wins with: " + player2.GetScore() + " points!" ;
+                        MessageBoxResult result = MessageBox.Show(winText,"Winner!",MessageBoxButton.OK);
+                        if(result == MessageBoxResult.OK)
+                        {
+                            Frame parentFrame = gameScreen.GetParentFrame();
+                            parentFrame.Navigate(new HighscoresScreen(parentFrame));
+                        }
                     }
                 }
                 else

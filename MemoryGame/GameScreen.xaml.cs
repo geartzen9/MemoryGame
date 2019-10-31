@@ -56,8 +56,8 @@ namespace MemoryGame
             this.parentFrame = parentFrame;
 
             XmlDocument saveFile = new XmlDocument();
-            //TODO: Zorgen dat als er geen save file is dat het spel dit niet toestaat
             saveFile.Load("Saves/memory.sav");
+            //TODO: Zorgen dat als er geen save file is dat het spel dit niet toestaat
 
             var player1Element = saveFile.GetElementsByTagName("player").Item(0);
             var player2Element = saveFile.GetElementsByTagName("player").Item(1);
@@ -201,5 +201,10 @@ namespace MemoryGame
             }
         }
 
+
+        public Frame GetParentFrame()
+        {
+            return this.parentFrame;
+        }
     }
 }

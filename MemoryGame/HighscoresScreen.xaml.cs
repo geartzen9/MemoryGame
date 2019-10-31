@@ -23,7 +23,6 @@ namespace MemoryGame
             this.parentFrame.Navigate(new MainMenu(this.parentFrame));
         }
 
-
         private void generateList()
         {
             for (int i = 0; i < 10; i++)

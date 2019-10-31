@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GameRules.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GameScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,6 +80,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Card.cs" />
+    <Compile Include="GameRules.xaml.cs">
+      <DependentUpon>GameRules.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameScreen.xaml.cs">
       <DependentUpon>GameScreen.xaml</DependentUpon>
     </Compile>
@@ -170,6 +177,12 @@
     <Resource Include="Res\themes\theme_1\8.png" />
     <Resource Include="Res\themes\theme_1\9.png" />
     <Resource Include="Res\themes\theme_1\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Rules.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -102,3 +102,5 @@ C:\Projecten\MemoryGame\MemoryGame\obj\Debug\GameScreen.baml
 C:\Projecten\MemoryGame\MemoryGame\obj\Debug\HighscoresScreen.baml
 C:\Projecten\MemoryGame\MemoryGame\obj\Debug\MainMenu.baml
 C:\Projecten\MemoryGame\MemoryGame\obj\Debug\NewGameScreen.baml
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\GameRules.g.cs
+C:\Projecten\MemoryGame\MemoryGame\obj\Debug\GameRules.baml

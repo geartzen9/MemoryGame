@@ -36,5 +36,10 @@ namespace MemoryGame
         {
             Application.Current.Shutdown();
         }
+
+        private void gameRulesButton_Click(object sender, RoutedEventArgs args)
+        {
+            this.parentFrame.Navigate(new GameRules(this.parentFrame));
+        }
     }
 }

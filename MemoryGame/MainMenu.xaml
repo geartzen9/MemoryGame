@@ -17,6 +17,11 @@
                 <Button Width="100" Height="25" Margin="0,25,0,0" Click="highscoresButton_Click">Scoreboard</Button>
                 <Button Width="100" Height="25" Margin="0,25,0,0" Click="shutdownButton_Click">Afsluiten</Button>
             </StackPanel>
+            <Button Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Background="White" Click="gameRulesButton_Click">
+                <StackPanel>
+                    <Image Source="Res/Rules.png"></Image>
+                </StackPanel>
+            </Button>
         </Grid>
     </Canvas>
 </Page>

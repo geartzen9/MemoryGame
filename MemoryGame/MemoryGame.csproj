@@ -179,10 +179,88 @@
     <Resource Include="Res\themes\theme_1\back.png" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Resource Include="Res\Rules.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Back.png" />
+=======
+    <Resource Include="Res\themes\theme_2\1.png" />
+    <Resource Include="Res\themes\theme_2\10.png" />
+    <Resource Include="Res\themes\theme_2\11.png" />
+    <Resource Include="Res\themes\theme_2\12.png" />
+    <Resource Include="Res\themes\theme_2\13.png" />
+    <Resource Include="Res\themes\theme_2\14.png" />
+    <Resource Include="Res\themes\theme_2\15.png" />
+    <Resource Include="Res\themes\theme_2\16.png" />
+    <Resource Include="Res\themes\theme_2\17.png" />
+    <Resource Include="Res\themes\theme_2\18.png" />
+    <Resource Include="Res\themes\theme_2\19.png" />
+    <Resource Include="Res\themes\theme_2\2.png" />
+    <Resource Include="Res\themes\theme_2\20.png" />
+    <Resource Include="Res\themes\theme_2\21.png" />
+    <Resource Include="Res\themes\theme_2\22.png" />
+    <Resource Include="Res\themes\theme_2\23.png" />
+    <Resource Include="Res\themes\theme_2\24.png" />
+    <Resource Include="Res\themes\theme_2\25.png" />
+    <Resource Include="Res\themes\theme_2\26.png" />
+    <Resource Include="Res\themes\theme_2\27.png" />
+    <Resource Include="Res\themes\theme_2\28.png" />
+    <Resource Include="Res\themes\theme_2\29.png" />
+    <Resource Include="Res\themes\theme_2\3.png" />
+    <Resource Include="Res\themes\theme_2\30.png" />
+    <Resource Include="Res\themes\theme_2\31.png" />
+    <Resource Include="Res\themes\theme_2\32.png" />
+    <Resource Include="Res\themes\theme_2\4.png" />
+    <Resource Include="Res\themes\theme_2\5.png" />
+    <Resource Include="Res\themes\theme_2\6.png" />
+    <Resource Include="Res\themes\theme_2\7.png" />
+    <Resource Include="Res\themes\theme_2\8.png" />
+    <Resource Include="Res\themes\theme_2\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\themes\theme_3\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\themes\theme_3\1.png" />
+    <Resource Include="Res\themes\theme_3\10.png" />
+    <Resource Include="Res\themes\theme_3\11.png" />
+    <Resource Include="Res\themes\theme_3\12.png" />
+    <Resource Include="Res\themes\theme_3\13.png" />
+    <Resource Include="Res\themes\theme_3\14.png" />
+    <Resource Include="Res\themes\theme_3\15.png" />
+    <Resource Include="Res\themes\theme_3\16.png" />
+    <Resource Include="Res\themes\theme_3\17.png" />
+    <Resource Include="Res\themes\theme_3\18.png" />
+    <Resource Include="Res\themes\theme_3\19.png" />
+    <Resource Include="Res\themes\theme_3\2.png" />
+    <Resource Include="Res\themes\theme_3\20.png" />
+    <Resource Include="Res\themes\theme_3\21.png" />
+    <Resource Include="Res\themes\theme_3\22.png" />
+    <Resource Include="Res\themes\theme_3\23.png" />
+    <Resource Include="Res\themes\theme_3\24.png" />
+    <Resource Include="Res\themes\theme_3\25.png" />
+    <Resource Include="Res\themes\theme_3\26.png" />
+    <Resource Include="Res\themes\theme_3\27.png" />
+    <Resource Include="Res\themes\theme_3\28.png" />
+    <Resource Include="Res\themes\theme_3\29.png" />
+    <Resource Include="Res\themes\theme_3\3.png" />
+    <Resource Include="Res\themes\theme_3\30.png" />
+    <Resource Include="Res\themes\theme_3\31.png" />
+    <Resource Include="Res\themes\theme_3\32.png" />
+    <Resource Include="Res\themes\theme_3\4.png" />
+    <Resource Include="Res\themes\theme_3\5.png" />
+    <Resource Include="Res\themes\theme_3\6.png" />
+    <Resource Include="Res\themes\theme_3\7.png" />
+    <Resource Include="Res\themes\theme_3\8.png" />
+    <Resource Include="Res\themes\theme_3\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="nature-background-drawing-23 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\themes\theme_2\back.png" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

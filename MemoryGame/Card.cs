@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 
 namespace MemoryGame
 {
@@ -10,11 +11,17 @@ namespace MemoryGame
         
         public Card(ImageSource frontImgSource, ImageSource backImgSource, int imgNbr)
         {
+            Console.WriteLine(backImgSource);
             backImg = frontImgSource;
             frontImg = frontImgSource;
             imgNumber = imgNbr;
             clicked = false;
             visibility = true;
+        }
+
+        public bool getClicked()
+        {
+            return clicked;
         }
 
         public void ShowFront()

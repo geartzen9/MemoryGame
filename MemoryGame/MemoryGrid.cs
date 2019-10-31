@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -15,7 +17,7 @@ namespace MemoryGame
         private List<Card> cards = new List<Card>();
         private GameScreen gameScreen;
         private Player player1, player2;
-        private int cols, rows, theme_nbr, bonusPoints = 0, streak = 1, previousCardIndex, clickedCardAmount = 0;
+        private int cols, rows, theme_nbr, pairs, bonusPoints = 0, streak = 1, previousCardIndex, clickedCardAmount = 0;
 
         /// <summary>
         ///     Constructor to give the xaml grid rows and columns so the cards can be added
@@ -23,7 +25,6 @@ namespace MemoryGame
         /// <param name="grid">The xaml grid name</param>
         /// <param name="cols">The amount of cols</param>
         /// <param name="rows">The amount of rows</param>
-        /// <param name="theme">The number of the chosen theme</param>
         public MemoryGrid(GameScreen gameScreen, Grid grid, Player player1, Player player2, int cols, int rows)
         {
             this.gameScreen = gameScreen;
@@ -32,6 +33,7 @@ namespace MemoryGame
             this.player2 = player2;
             this.cols = cols;
             this.rows = rows;
+            this.pairs = (rows * cols) / 2;
             this.theme_nbr = Convert.ToInt32(Settings.Default["ThemeNumber"]);
 
             InitializeGrid(cols, rows);
@@ -135,69 +137,71 @@ namespace MemoryGame
             Image card = (Image)sender;
             int index = (int)card.Tag;
 
-            if(index != previousCardIndex)
+            if (cards[index].getClicked() == true)
             {
-                card.Source = null;
-                cards[index].ShowFront();
-                clickedCardAmount++;
-
-                ShowCards();
-
-                if (clickedCardAmount == 2)
-                {
-                    if (cards[previousCardIndex].GetImgNumber() == cards[index].GetImgNumber())
-                    {
-                        cards[index].SetVisibility(false);
-                        cards[previousCardIndex].SetVisibility(false);
-
-                        if (streak % 3 == 0)
-                            bonusPoints += 10;
-
-                        if (player1.GetTurn() == true)
-                        {
-                            player1.SetScore(player1.GetScore() + 10 + bonusPoints);
-                        }
-                        else
-                        {
-                            player2.SetScore(player2.GetScore() + 10 + bonusPoints);
-                        }
-
-                        streak++;
-
-                        //TODO: add some delay here to be able to see which card you picked
-                    }
-                    else
-                    {
-                        cards[index].ShowBack();
-                        cards[previousCardIndex].ShowBack();
-                        bonusPoints = 0;
-                        streak = 0;
-
-                        if (player1.GetTurn() == true)
-                        {
-                            player1.SetTurn(false);
-                            player2.SetTurn(true);
-                        }
-                        else
-                        {
-                            player1.SetTurn(true);
-                            player2.SetTurn(false);
-                        }
-                    }
-
-                    clickedCardAmount = 0;
-                    gameScreen.UpdateLabels(player1, player2);
-                }
-                else
-                {
-                    previousCardIndex = index;
-                }
+                return;
             }
+
+            card.Source = null;
+            cards[index].ShowFront();
+            clickedCardAmount++;
 
             ShowCards();
 
+            if (clickedCardAmount == 2)
+            {
+                if (cards[previousCardIndex].GetImgNumber() == cards[index].GetImgNumber())
+                {
+                    cards[index].SetVisibility(false);
+                    cards[previousCardIndex].SetVisibility(false);
+
+                    if (streak % 3 == 0)
+                        bonusPoints += 10;
+
+                    if (player1.GetTurn() == true)
+                    {
+                        player1.SetScore(player1.GetScore() + 10 + bonusPoints);
+                    }
+                    else
+                    {
+                        player2.SetScore(player2.GetScore() + 10 + bonusPoints);
+                    }
+
+                    streak++;
+                    pairs--;
+                    if (pairs == 0)
+                    {
+                        MessageBox.Show("JIJ WINT PIKKURT");
+                    }
+                }
+                else
+                {
+                    cards[index].ShowBack();
+                    cards[previousCardIndex].ShowBack();
+                    bonusPoints = 0;
+                    streak = 1;
+
+                    if (player1.GetTurn() == true)
+                    {
+                        player1.SetTurn(false);
+                        player2.SetTurn(true);
+                    }
+                    else
+                    {
+                        player1.SetTurn(true);
+                        player2.SetTurn(false);
+                    }
+                }
+
+                clickedCardAmount = 0;
+                gameScreen.UpdateLabels(player1, player2);
+            }
+            else
+            {
+                previousCardIndex = index;
+            }
         }
-        
+
         public List<Card> GetCards()
         {
             return cards;

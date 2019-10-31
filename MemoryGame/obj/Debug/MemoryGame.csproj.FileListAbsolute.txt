@@ -104,3 +104,5 @@ C:\Projecten\MemoryGame\MemoryGame\obj\Debug\MainMenu.baml
 C:\Projecten\MemoryGame\MemoryGame\obj\Debug\NewGameScreen.baml
 C:\Projecten\MemoryGame\MemoryGame\obj\Debug\GameRules.g.cs
 C:\Projecten\MemoryGame\MemoryGame\obj\Debug\GameRules.baml
+D:\NHL\Memorygame\MemoryGame\obj\Debug\GameRules.g.cs
+D:\NHL\Memorygame\MemoryGame\obj\Debug\GameRules.baml

@@ -29,7 +29,7 @@ namespace MemoryGame
 
         private void highscoresButton_Click(object sender, RoutedEventArgs args)
         {
-            this.parentFrame.Navigate(new HighscoresScreen());
+            this.parentFrame.Navigate(new HighscoresScreen(this.parentFrame));
         }
 
         private void shutdownButton_Click(object sender, RoutedEventArgs args)

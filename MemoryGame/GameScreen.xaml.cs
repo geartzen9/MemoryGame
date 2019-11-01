@@ -30,21 +30,7 @@ namespace MemoryGame
             this.player2 = player2;
             this.difficulty = difficulty;
 
-            switch (difficulty)
-            {
-                case "Makkelijk":
-                    rowSize = 4;
-                    colSize = 4;
-                    break;
-                case "Normaal":
-                    rowSize = 6;
-                    colSize = 6;
-                    break;
-                case "Moeilijk":
-                    rowSize = 8;
-                    colSize = 8;
-                    break;                
-            }
+            SetGridSize(this.difficulty);
 
             grid = new MemoryGrid(this, cardHolder, player1, player2, colSize, rowSize);
         }
@@ -58,12 +44,14 @@ namespace MemoryGame
 
             XmlDocument saveFile = new XmlDocument();
             saveFile.Load("Saves/memory.sav");
-            //TODO: Zorgen dat als er geen save file is dat het spel dit niet toestaat
 
             var player1Element = saveFile.GetElementsByTagName("player").Item(0);
             var player2Element = saveFile.GetElementsByTagName("player").Item(1);
             this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
             this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
+            this.difficulty = saveFile.GetElementsByTagName("difficulty").Item(0).InnerText;
+
+            SetGridSize(this.difficulty);
 
             grid = new MemoryGrid(this, cardHolder, player1, player2, colSize, rowSize);
 
@@ -260,6 +248,25 @@ namespace MemoryGame
                 }
 
                 xmlDocument.Save("Saves/scores.sav");
+            }
+        }
+
+        public void SetGridSize(string difficulty)
+        {
+            switch (difficulty)
+            {
+                case "Makkelijk":
+                    rowSize = 4;
+                    colSize = 4;
+                    break;
+                case "Normaal":
+                    rowSize = 6;
+                    colSize = 6;
+                    break;
+                case "Moeilijk":
+                    rowSize = 8;
+                    colSize = 8;
+                    break;
             }
         }
 

@@ -9,7 +9,7 @@ namespace MemoryGame
     /// </summary>
     public partial class HighscoresScreen : Page
     {
-        Frame parentFrame;
+                Frame parentFrame;
         public HighscoresScreen(Frame parentFrame)
         {
             InitializeComponent();
@@ -44,6 +44,17 @@ namespace MemoryGame
                     text.TextAlignment = TextAlignment.Center;
                     text.FontFamily = new FontFamily ("Tempus Sans ITC");
                     text.Foreground = new SolidColorBrush(Colors.White);
+                    Border border = new Border()
+                    {
+                        BorderThickness = new Thickness()
+                        {
+                            Bottom = (row == 9) ? 2 : 1,
+                            Top = (row == 0) ? 2 : 1,
+                        },
+                     BorderBrush = new SolidColorBrush(Colors.White)
+                    };
+
+
 
                     if (col == 0)
                         text.Text = (row + 1).ToString();
@@ -57,6 +68,10 @@ namespace MemoryGame
                     Grid.SetColumn(text, col);
                     Grid.SetRow(text, row);
                     scoreGrid.Children.Add(text);
+
+                    Grid.SetColumn(border, col);
+                    Grid.SetRow(border, row);
+                    scoreGrid.Children.Add(border);
                 }
             }
 

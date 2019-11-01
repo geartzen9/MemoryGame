@@ -9,9 +9,13 @@
       Title="GameRules">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="res/memoryBackground.png"/>
+        </Grid.Background>
         <StackPanel>
-            <TextBlock FontFamily="Showcard Gothic" FontSize="36" HorizontalAlignment="Center" Margin="0,25,0,0">Spelregels</TextBlock>
-            <TextBlock Background="White" Width="500" Height="340" TextWrapping="Wrap" LineHeight="20" Margin="0,20,0,0" FontFamily="Tempus Sans ITC" FontSize="14">Deze memory game word gespeeld met twee spelers.<LineBreak></LineBreak>
+            <TextBlock Foreground="WhiteSmoke" FontFamily="Showcard Gothic" FontSize="36" HorizontalAlignment="Center" Margin="0,25,0,0">Spelregels</TextBlock>
+            <TextBlock Foreground="White" Width="500" Height="340" TextWrapping="Wrap" LineHeight="20" Margin="0,20,0,0" FontFamily="Tempus Sans ITC" FontSize="14">
+                Deze memory game word gespeeld met twee spelers.<LineBreak></LineBreak>
                 Beide spelers vullen hun naam in en kiezen een moeilijkheidsgraad <LineBreak></LineBreak>
                 De moeilijkheidsgraden bestaan uit:<LineBreak></LineBreak>
                 -Makkelijk is een 4 x 4 kaart speelveld (16 kaarten)<LineBreak></LineBreak>
@@ -27,10 +31,8 @@
             </TextBlock>
 
         </StackPanel>
-        <Button Margin="20,15,0,0" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="returntoMenu_Button">
-            <StackPanel>
-                <Image Source="Res/Back.png"></Image>
-            </StackPanel>
+        <Button FontFamily="Tempus Sans ITC" Margin="25,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="25" Click="returntoMenu_Button" FontWeight="Bold" FontSize="16">
+            Terug
         </Button>
     </Grid>
 </Page>

@@ -12,17 +12,15 @@
             <ImageBrush ImageSource="res/memoryBackground.png"/>
         </Canvas.Background>
         <Grid Width="{Binding ActualWidth, ElementName=parentCanvas}" Height="{Binding ActualHeight, ElementName=parentCanvas}">
-            <TextBlock Width="400" Height="50" TextAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Showcard Gothic" FontSize="36">
+            <TextBlock Width="400" Height="50" TextAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Showcard Gothic" FontSize="36" Foreground="WhiteSmoke">
                 Highscores
             </TextBlock>
             <Button FontFamily="Tempus Sans ITC" Margin="25,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="25" Click="Back_Button_Click" FontWeight="Bold" FontSize="16">
                 Terug
             </Button>
-            <Border Margin="20,90,20,20" BorderThickness="1" BorderBrush="Black">
-                <Grid Margin="20,90,20,20" x:Name="scoreGrid">
+            <Grid Margin="20,90,20,20" x:Name="scoreGrid">
 
-                </Grid>
-            </Border>
+            </Grid>
         </Grid>
     </Canvas>
 

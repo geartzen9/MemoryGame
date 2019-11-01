@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -201,6 +202,66 @@ namespace MemoryGame
             }
         }
 
+        public void SaveHighscores(Player player)
+        {
+            if (!File.Exists("Saves/scores.sav") || new FileInfo("Saves/scores.sav").Length == 0)
+            {
+                // Create a new save file in the "Saves" directory.
+                XmlWriter writer = XmlWriter.Create("Saves/scores.sav");
+                writer.WriteStartElement("highscores");
+
+                writer.WriteStartElement("highscore");
+                WriteTag(writer, "playerName", player.GetName());
+                WriteTag(writer, "score", player.GetScore().ToString());
+                writer.WriteEndElement();
+
+                writer.WriteEndElement();
+                writer.Close();
+            } 
+            else
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load("Saves/scores.sav");
+                XmlNode parentNode = xmlDocument.GetElementsByTagName("highscores").Item(0);
+
+                XmlElement parentElement = xmlDocument.CreateElement("highscore");
+                XmlElement playerNameElement = xmlDocument.CreateElement("playerName");
+                XmlElement scoreElement = xmlDocument.CreateElement("score");
+
+                playerNameElement.InnerText = player.GetName();
+                scoreElement.InnerText = player.GetScore().ToString();
+
+                parentElement.AppendChild(playerNameElement);
+                parentElement.AppendChild(scoreElement);
+
+                for (int i = parentNode.ChildNodes.Count - 1; i >= 0; i--)
+                {
+                    Console.WriteLine("player score: " + player.GetScore());
+                    Console.WriteLine("old score: " + parentNode.ChildNodes.Item(i).InnerText);
+
+                    // Als de winner score lager is dan de huidige highscore.
+                    if (Convert.ToInt32(parentNode.ChildNodes.Item(i).ChildNodes.Item(1).InnerText) > player.GetScore())
+                    {
+                        // Controleer of de laatste highscore is geselecteerd.
+                        if (i == parentNode.ChildNodes.Count - 1)
+                        {
+                            return;
+                        }    
+
+                        parentNode.InsertAfter(parentElement, parentNode.ChildNodes.Item(i));
+                    }
+                }
+
+                parentNode.InsertBefore(parentElement, parentNode.ChildNodes.Item(0));
+
+                if (parentNode.ChildNodes.Count > 10)
+                {
+                    parentNode.RemoveChild(parentNode.LastChild);
+                }
+
+                xmlDocument.Save("Saves/scores.sav");
+            }
+        }
 
         public Frame GetParentFrame()
         {

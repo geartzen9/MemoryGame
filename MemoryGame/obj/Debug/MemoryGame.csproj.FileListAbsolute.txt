@@ -108,3 +108,5 @@ D:\NHL\Memorygame\MemoryGame\obj\Debug\GameRules.g.cs
 D:\NHL\Memorygame\MemoryGame\obj\Debug\GameRules.baml
 C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\GameRules.g.cs
 C:\Users\Thijs\source\repos\MemoryGame\MemoryGame\obj\Debug\GameRules.baml
+C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\obj\Debug\GameRules.g.cs
+C:\Users\Gerrit de Heij\Documents\School Spullen\MemoryGame\MemoryGame\obj\Debug\GameRules.baml

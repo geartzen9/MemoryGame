@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Xml;
 
 namespace MemoryGame
 {
@@ -171,13 +172,23 @@ namespace MemoryGame
                     pairs--;
                     if (pairs == 0)
                     {
-                        //TODO: Save scores to highscore page
-                        string winText = (player1.GetScore() > player2.GetScore())? player1.GetName() + " wins with: " + player1.GetScore() + " points!" : player1.GetName() + " wins with: " + player2.GetScore() + " points!" ;
+                        Player winner = (player1.GetScore() > player2.GetScore()) ? player1 : player2;
+
+                        string winText = winner.GetName() + " wins with: " + winner.GetScore() + " points!";
                         MessageBoxResult result = MessageBox.Show(winText,"Winner!",MessageBoxButton.OK);
-                        if(result == MessageBoxResult.OK)
+                        
+                        if (result == MessageBoxResult.OK)
                         {
                             Frame parentFrame = gameScreen.GetParentFrame();
                             parentFrame.Navigate(new HighscoresScreen(parentFrame));
+
+                            XmlDocument saveFile = new XmlDocument();
+                            saveFile.Load("Saves/scores.sav");
+
+                            //if (saveFile.GetElementsByTagName("highscores").Item(0).ChildNodes.Count != 10)
+                            //{
+                                gameScreen.SaveHighscores(winner);
+                            //}
                         }
                     }
                 }

@@ -94,6 +94,16 @@ namespace MemoryGame
             parentFrame.Navigate(new MainMenu(this.parentFrame));
         }
 
+        private void ExitButton_Click(object sender, RoutedEventArgs args)
+        {
+            MessageBoxResult result = MessageBox.Show("Als je doorgaat verlies je alle voortgang", "Zeker weten?", MessageBoxButton.YesNo);
+
+            if (result.Equals(MessageBoxResult.Yes))
+            {
+                parentFrame.Navigate(new MainMenu(this.parentFrame));
+            }
+        }
+        
         private void LoadData()
         {
             XmlDocument saveFile = new XmlDocument();

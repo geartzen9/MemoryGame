@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Xml;
 
 namespace MemoryGame
 {
@@ -26,6 +27,11 @@ namespace MemoryGame
 
         private void generateList()
         {
+
+            XmlDocument saveFile = new XmlDocument();
+            saveFile.Load("Saves/scores.sav");
+            var highscores = saveFile.GetElementsByTagName("highscores").Item(0);
+
             for (int i = 0; i < 10; i++)
             {
                 scoreGrid.RowDefinitions.Add(new RowDefinition());
@@ -45,14 +51,17 @@ namespace MemoryGame
                     text.FontFamily = new FontFamily ("Tempus Sans ITC");
                     text.Foreground = new SolidColorBrush(Colors.White);
 
+                    //Placement
                     if (col == 0)
                         text.Text = (row + 1).ToString();
 
+                    //Name
                     if (col == 1)
-                        text.Text = "Name";
+                        text.Text = highscores.ChildNodes.Item(row).ChildNodes.Item(0).InnerText;
 
+                    //Score
                     if (col == 2)
-                        text.Text = "Score";
+                        text.Text = highscores.ChildNodes.Item(row).ChildNodes.Item(1).InnerText; ;
 
                     Grid.SetColumn(text, col);
                     Grid.SetRow(text, row);

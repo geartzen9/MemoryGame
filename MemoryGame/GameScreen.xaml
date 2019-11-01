@@ -18,23 +18,35 @@
 
         </Grid>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Right" Height="300">
-            <Image Source="Res/logo.png" Margin="25,0"></Image>
-            <Label HorizontalContentAlignment="Center" Margin="0,25,0,0" Name="player1NameLabel" x:FieldModifier="public">Spelernaam 1</Label>
-            <Label HorizontalContentAlignment="Center">
+        <Grid Grid.Column="1" HorizontalAlignment="Right" Height="{Binding ActualHeight, ElementName=parentCanvas}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/><!-- Icon -->
+                <RowDefinition Height="2*"/><!-- Player 1 & score? -->
+                <RowDefinition Height="2*"/><!-- Player 2 & score? -->
+                <RowDefinition Height="1*"/><!-- Button 1 -->
+                <RowDefinition Height="1*"/><!-- Button 1 -->
+                <RowDefinition Height="1*"/><!-- Button 1 -->
+            </Grid.RowDefinitions>
+            
+            <Image Grid.Row="0" Source="Res/logo.png" Margin="25,0"></Image>
+            
+            <Label Grid.Row="1" HorizontalContentAlignment="Center" Name="player1NameLabel" x:FieldModifier="public" FontSize="15">Spelernaam 1</Label>
+            <Label Grid.Row="1" HorizontalContentAlignment="Center" Margin="0,30,0,0" FontSize="15">
                 <TextBlock>
-                    Score: <Span><Run Name="player1ScoreLabel" Text="0"></Run></Span>
-                </TextBlock>
-            </Label>
-            <Label HorizontalContentAlignment="Center" Margin="0,25,0,0" Name="player2NameLabel">Spelernaam 2</Label>
-            <Label HorizontalContentAlignment="Center">
-                <TextBlock>
-                        Score: <Span><Run Name="player2ScoreLabel" Text="0"></Run></Span>
+                    Score: <Span><Run Name="player1ScoreLabel" Text="0" FontSize="15"></Run></Span>
                 </TextBlock>
             </Label>
 
-            <Button FontFamily="Tempus Sans ITC" FontSize="16" Margin="25,25,25,0" Click="RestartButton_Click" FontWeight="Bold">Opnieuw starten</Button>
-            <Button FontFamily="Tempus Sans ITC" FontSize="16" Margin="25,25,25,0" Click="QuitButton_Click" FontWeight="Bold">Opslaan en afsluiten</Button>
-        </StackPanel>
+            <Label Grid.Row="2" HorizontalContentAlignment="Center" Name="player2NameLabel" FontSize="15">Spelernaam 2</Label>
+            <Label Grid.Row="2" HorizontalContentAlignment="Center" Margin="0,30,0,0" FontSize="15">
+                <TextBlock>
+                        Score: <Span><Run Name="player2ScoreLabel" Text="0" FontSize="15"></Run></Span>
+                </TextBlock>
+            </Label>
+
+            <Button Grid.Row="3" FontFamily="Tempus Sans ITC" FontSize="16" Margin="10,5,10,5" Click="RestartButton_Click" FontWeight="Bold">Opnieuw starten</Button>
+            <Button Grid.Row="4" FontFamily="Tempus Sans ITC" FontSize="16" Margin="10,5,10,5" Click="QuitButton_Click" FontWeight="Bold">Opslaan en afsluiten</Button>
+            <Button Grid.Row="5" FontFamily="Tempus Sans ITC" FontSize="16" Margin="10,5,10,5" Click="ExitButton_Click" FontWeight="Bold">Opslaan zonder afsluiten</Button>
+        </Grid>
     </Grid>
 </Page>

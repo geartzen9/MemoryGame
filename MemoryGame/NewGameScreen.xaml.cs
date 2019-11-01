@@ -27,18 +27,19 @@ namespace MemoryGame
                 return;
             }
             
-            string difficulty = Moeilijkheidsgraad.SelectedValue.ToString();            
+            string difficulty = Moeilijkheidsgraad.SelectedValue.ToString();
+            MessageBox.Show(difficulty);
             Player player1 = new Player(InputP1.Text, 0, true);
             Player player2 = new Player(InputP2.Text, 0, true);
             this.parentFrame.Navigate(new GameScreen(parentFrame, player1, player2, difficulty));
         }
        
-            
-            //Close Theme
+        //Close Theme
         public void ClosePopupClicked(object sender, RoutedEventArgs e)
         {
             if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }
         }
+
         //Open Theme
         public void ShowPopupOffsetClicked(object sender, RoutedEventArgs e)
         {
@@ -62,6 +63,11 @@ namespace MemoryGame
             Settings.Default["ThemeNumber"] = value;
             Settings.Default.Save();
             Console.WriteLine(Settings.Default["ThemeNumber"]);
+        }
+
+        public void BackButtonClick(object sender, RoutedEventArgs args)
+        {
+            this.parentFrame.Navigate(new MainMenu(this.parentFrame));
         }
     }
 }

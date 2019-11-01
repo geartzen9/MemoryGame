@@ -16,3 +16,5 @@ MemoryGame/obj/Debug/
 *.resources
 
 *.lref
+
+.vs/MemoryGame/DesignTimeBuild/.dtbcache

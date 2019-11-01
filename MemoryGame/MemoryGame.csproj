@@ -262,5 +262,8 @@
   <ItemGroup>
     <Resource Include="Res\memoryBackground.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

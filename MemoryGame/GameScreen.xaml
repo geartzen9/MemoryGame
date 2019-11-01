@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MemoryGame"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GameScreen">
+      Title="GameScreen"
+      Background="WhiteSmoke">
 
     <Grid x:Name="parentCanvas">
         <Grid.ColumnDefinitions>

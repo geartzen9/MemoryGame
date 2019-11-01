@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MemoryGame
@@ -24,7 +25,13 @@ namespace MemoryGame
 
         private void continueButton_Click(object sender, RoutedEventArgs args)
         {
-            this.parentFrame.Navigate(new GameScreen(this.parentFrame));
+            if (!File.Exists("Saves/memory.sav"))
+            {
+                MessageBox.Show("Geen opslag bestand gevonden. Begin een nieuw spel.", "Doorgaan");
+            } else
+            {
+                this.parentFrame.Navigate(new GameScreen(this.parentFrame));
+            }
         }
 
         private void highscoresButton_Click(object sender, RoutedEventArgs args)

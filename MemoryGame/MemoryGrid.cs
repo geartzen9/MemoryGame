@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -132,7 +133,7 @@ namespace MemoryGame
         /// </summary>
         /// <param name="sender">Object that is clicked on</param>
         /// <param name="e">The event data</param>
-        private void CardClick(object sender, MouseButtonEventArgs e)
+        private async void CardClick(object sender, MouseButtonEventArgs e)
         {
             Image card = (Image)sender;
             int index = (int)card.Tag;
@@ -192,6 +193,10 @@ namespace MemoryGame
                             else
                             {
                                 gameScreen.SaveHighscores(winner);
+
+                                saveFile.Load("Saves/scores.sav");
+                                highscoresElement = saveFile.GetElementsByTagName("highscores").Item(0);
+
                                 parentFrame.Navigate(new HighscoresScreen(parentFrame, saveFile, highscoresElement));
                             }
                         }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml;
@@ -38,7 +39,7 @@ namespace MemoryGame
                 scoreGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
-            for (int row = 0; row < 10; row++)
+            for (int row = 0; row < highscoresElement.ChildNodes.Count; row++)
             {
                 for (int col = 0; col < 3; col++)
                 {
@@ -56,22 +57,20 @@ namespace MemoryGame
                         BorderBrush = new SolidColorBrush(Colors.White)
                     };
 
-                    //Placement
-                    if (col == 0)
+                    switch (col)
                     {
-                        text.Text = (row + 1).ToString();
-                    }
-
-                    //Name
-                    if (col == 1)
-                    {
-                        text.Text = highscoresElement.ChildNodes.Item(row).ChildNodes.Item(0).InnerText;
-                    }
-
-                    //Score
-                    if (col == 2)
-                    {
-                        text.Text = highscoresElement.ChildNodes.Item(row).ChildNodes.Item(1).InnerText;
+                        // Rank
+                        case 0:
+                            text.Text = (row + 1).ToString();
+                            break;
+                        // Player name
+                        case 1:
+                            text.Text = highscoresElement.ChildNodes.Item(row).ChildNodes.Item(0).InnerText;
+                            break;
+                        // Score
+                        case 2:
+                            text.Text = highscoresElement.ChildNodes.Item(row).ChildNodes.Item(1).InnerText;
+                            break;
                     }
 
                     Grid.SetColumn(text, col);

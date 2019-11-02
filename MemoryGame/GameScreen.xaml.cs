@@ -233,9 +233,14 @@ namespace MemoryGame
 
                         parentNode.InsertAfter(parentElement, parentNode.ChildNodes.Item(i));
                     }
+
+                    if (i == 0 && player.GetScore() > Convert.ToInt32(parentNode.ChildNodes.Item(i).ChildNodes.Item(1).InnerText))
+                    {
+                        parentNode.InsertBefore(parentElement, parentNode.ChildNodes.Item(0));
+                    }
                 }
 
-                parentNode.InsertBefore(parentElement, parentNode.ChildNodes.Item(0));
+                //parentNode.InsertBefore(parentElement, parentNode.ChildNodes.Item(0));
 
                 if (parentNode.ChildNodes.Count > 10)
                 {

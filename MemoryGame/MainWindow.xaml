@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemoryGame"
         mc:Ignorable="d"
-        Title="Memory Game" Height="450" Width="800" Icon="Res\icon.png">
+        Title="Memory Game" Height="720" Width="1280" Icon="Res\icon.png"
+        MinHeight="500" MinWidth="700">
     <Grid>
         <Frame x:Name="parentFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>

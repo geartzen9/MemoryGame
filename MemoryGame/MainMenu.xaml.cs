@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml;
 
 namespace MemoryGame
 {
@@ -30,7 +31,20 @@ namespace MemoryGame
                 MessageBox.Show("Geen opslag bestand gevonden. Begin een nieuw spel.", "Doorgaan");
             } else
             {
-                this.parentFrame.Navigate(new GameScreen(this.parentFrame));
+                XmlDocument saveFile = new XmlDocument();
+                saveFile.Load("Saves/memory.sav");
+
+                XmlNode player1Element = saveFile.GetElementsByTagName("player").Item(0);
+                XmlNode player2Element = saveFile.GetElementsByTagName("player").Item(1);
+                XmlNode cardsElement = saveFile.GetElementsByTagName("cards").Item(0);
+
+                if (player1Element == null || player2Element == null || cardsElement == null)
+                {
+                    MessageBox.Show("Kon het opslagbestand niet lezen.", "Doorgaan");
+                } else
+                {
+                    this.parentFrame.Navigate(new GameScreen(this.parentFrame, saveFile, player1Element, player2Element, cardsElement));
+                }
             }
         }
 

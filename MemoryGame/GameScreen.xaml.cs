@@ -36,17 +36,12 @@ namespace MemoryGame
         }
 
         // Constructor to continue a previous game.
-        public GameScreen(Frame parentFrame)
+        public GameScreen(Frame parentFrame, XmlDocument saveFile, XmlNode player1Element, XmlNode player2Element, XmlNode cardsElement)
         {
             InitializeComponent();
             
             this.parentFrame = parentFrame;
 
-            XmlDocument saveFile = new XmlDocument();
-            saveFile.Load("Saves/memory.sav");
-
-            var player1Element = saveFile.GetElementsByTagName("player").Item(0);
-            var player2Element = saveFile.GetElementsByTagName("player").Item(1);
             this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
             this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
             this.difficulty = saveFile.GetElementsByTagName("difficulty").Item(0).InnerText;
@@ -55,7 +50,7 @@ namespace MemoryGame
 
             grid = new MemoryGrid(this, cardHolder, player1, player2, colSize, rowSize);
 
-            LoadData();
+            LoadData(cardsElement);
         }
 
         private void RestartButton_Click(object sender, RoutedEventArgs args)
@@ -92,18 +87,8 @@ namespace MemoryGame
             }
         }
         
-        private void LoadData()
+        private void LoadData(XmlNode cardsElement)
         {
-            XmlDocument saveFile = new XmlDocument();
-            saveFile.Load("Saves/memory.sav");
-
-            var player1Element = saveFile.GetElementsByTagName("player").Item(0);
-            var player2Element = saveFile.GetElementsByTagName("player").Item(1);
-            var cardsElement = saveFile.GetElementsByTagName("cards").Item(0);
-
-            this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
-            this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
-
             UpdateLabels(player1, player2);
 
             int cardsAmount = grid.GetCards().Count;

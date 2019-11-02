@@ -11,8 +11,7 @@ namespace MemoryGame
         
         public Card(ImageSource frontImgSource, ImageSource backImgSource, int imgNbr)
         {
-            Console.WriteLine(backImgSource);
-            backImg = backImgSource;
+            backImg = frontImgSource;
             frontImg = frontImgSource;
             imgNumber = imgNbr;
             clicked = false;

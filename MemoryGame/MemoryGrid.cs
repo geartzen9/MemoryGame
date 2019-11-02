@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -180,15 +179,21 @@ namespace MemoryGame
                         if (result == MessageBoxResult.OK)
                         {
                             Frame parentFrame = gameScreen.GetParentFrame();
-                            parentFrame.Navigate(new HighscoresScreen(parentFrame));
 
                             XmlDocument saveFile = new XmlDocument();
                             saveFile.Load("Saves/scores.sav");
 
-                            //if (saveFile.GetElementsByTagName("highscores").Item(0).ChildNodes.Count != 10)
-                            //{
+                            var highscoresElement = saveFile.GetElementsByTagName("highscores").Item(0);
+
+                            if (highscoresElement == null)
+                            {
+                                MessageBox.Show("Kon de score niet opslaan in de highscores.", "Highscores");
+                            }
+                            else
+                            {
                                 gameScreen.SaveHighscores(winner);
-                            //}
+                                parentFrame.Navigate(new HighscoresScreen(parentFrame, saveFile, highscoresElement));
+                            }
                         }
                     }
                 }

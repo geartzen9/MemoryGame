@@ -50,7 +50,26 @@ namespace MemoryGame
 
         private void highscoresButton_Click(object sender, RoutedEventArgs args)
         {
-            this.parentFrame.Navigate(new HighscoresScreen(this.parentFrame));
+            if (!File.Exists("Saves/scores.sav"))
+            {
+                MessageBox.Show("Geen opslag bestand gevonden voor de scores.", "Highscores");
+            }
+            else
+            {
+                XmlDocument saveFile = new XmlDocument();
+                saveFile.Load("Saves/scores.sav");
+
+                var highscoresElement = saveFile.GetElementsByTagName("highscores").Item(0);
+
+                if (highscoresElement == null)
+                {
+                    MessageBox.Show("Kon het opslagbestand niet lezen.", "Highscores");
+                }
+                else
+                {
+                    this.parentFrame.Navigate(new HighscoresScreen(this.parentFrame, saveFile, highscoresElement));
+                }
+            }
         }
 
         private void shutdownButton_Click(object sender, RoutedEventArgs args)

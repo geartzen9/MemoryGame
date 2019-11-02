@@ -10,14 +10,15 @@ namespace MemoryGame
     /// </summary>
     public partial class HighscoresScreen : Page
     {
-                Frame parentFrame;
-        public HighscoresScreen(Frame parentFrame)
+        Frame parentFrame;
+        
+        public HighscoresScreen(Frame parentFrame, XmlDocument saveFile, XmlNode highscoresElement)
         {
             InitializeComponent();
 
             this.parentFrame = parentFrame;
 
-            generateList();
+            generateList(saveFile, highscoresElement);
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs args)
@@ -25,13 +26,8 @@ namespace MemoryGame
             this.parentFrame.Navigate(new MainMenu(this.parentFrame));
         }
 
-        private void generateList()
+        private void generateList(XmlDocument saveFile, XmlNode highscoresElement)
         {
-
-            XmlDocument saveFile = new XmlDocument();
-            saveFile.Load("Saves/scores.sav");
-            var highscores = saveFile.GetElementsByTagName("highscores").Item(0);
-
             for (int i = 0; i < 10; i++)
             {
                 scoreGrid.RowDefinitions.Add(new RowDefinition());
@@ -57,22 +53,26 @@ namespace MemoryGame
                             Bottom = (row == 9) ? 2 : 1,
                             Top = (row == 0) ? 2 : 1,
                         },
-                     BorderBrush = new SolidColorBrush(Colors.White)
+                        BorderBrush = new SolidColorBrush(Colors.White)
                     };
-
-
 
                     //Placement
                     if (col == 0)
+                    {
                         text.Text = (row + 1).ToString();
+                    }
 
                     //Name
                     if (col == 1)
-                        text.Text = highscores.ChildNodes.Item(row).ChildNodes.Item(0).InnerText;
+                    {
+                        text.Text = highscoresElement.ChildNodes.Item(row).ChildNodes.Item(0).InnerText;
+                    }
 
                     //Score
                     if (col == 2)
-                        text.Text = highscores.ChildNodes.Item(row).ChildNodes.Item(1).InnerText; ;
+                    {
+                        text.Text = highscoresElement.ChildNodes.Item(row).ChildNodes.Item(1).InnerText;
+                    }
 
                     Grid.SetColumn(text, col);
                     Grid.SetRow(text, row);
@@ -87,5 +87,3 @@ namespace MemoryGame
         }
     }
 }
-
-//TODO: HighScores Read from save

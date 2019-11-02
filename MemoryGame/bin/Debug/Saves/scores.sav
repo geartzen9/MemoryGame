@@ -5,6 +5,18 @@
     <score>170</score>
   </highscore>
   <highscore>
+    <playerName>BIEM</playerName>
+    <score>690</score>
+  </highscore>
+  <highscore>
+    <playerName>Gerrit</playerName>
+    <score>80</score>
+  </highscore>
+  <highscore>
+    <playerName>Spelernaam 1</playerName>
+    <score>170</score>
+  </highscore>
+  <highscore>
     <playerName>Gerardus</playerName>
     <score>100</score>
   </highscore>
@@ -27,17 +39,5 @@
   <highscore>
     <playerName>Spelernaam 1</playerName>
     <score>50</score>
-  </highscore>
-  <highscore>
-    <playerName>Spelernaam 1</playerName>
-    <score>40</score>
-  </highscore>
-  <highscore>
-    <playerName>Jan</playerName>
-    <score>30</score>
-  </highscore>
-  <highscore>
-    <playerName>Gerardus</playerName>
-    <score>20</score>
   </highscore>
 </highscores>

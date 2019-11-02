@@ -254,9 +254,6 @@
     <Resource Include="Res\themes\theme_3\9.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="nature-background-drawing-23 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\themes\theme_2\back.png" />
   </ItemGroup>
   <ItemGroup>

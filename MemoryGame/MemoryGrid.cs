@@ -133,7 +133,7 @@ namespace MemoryGame
         /// </summary>
         /// <param name="sender">Object that is clicked on</param>
         /// <param name="e">The event data</param>
-        private async void CardClick(object sender, MouseButtonEventArgs e)
+        private void CardClick(object sender, MouseButtonEventArgs e)
         {
             Image card = (Image)sender;
             int index = (int)card.Tag;

@@ -10,8 +10,13 @@ namespace MemoryGame
     /// </summary>
     public partial class MainMenu : Page
     {
+        // The Frame to navigate between pages.
         Frame parentFrame;
 
+        /// <summary>
+        ///     Initialize a new main menu screen.
+        /// </summary>
+        /// <param name="parentFrame">The Frame to navigate between pages.</param>
         public MainMenu(Frame parentFrame)
         {
             InitializeComponent();
@@ -19,11 +24,25 @@ namespace MemoryGame
             this.parentFrame = parentFrame;
         }
 
+        /// <summary>
+        ///     The click event for the new game button.
+        ///     This navigates to the new game screen.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void newGameButton_Click(object sender, RoutedEventArgs args)
         {
             this.parentFrame.Navigate(new NewGameScreen(this.parentFrame));
         }
 
+        /// <summary>
+        ///     The click event of the continue button.
+        ///     This reads the save file and checks if it exists and it is valid.
+        ///     If it is falid, then it navigates to the game screen.
+        ///     And if it's not valid, it shows a messagebox.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void continueButton_Click(object sender, RoutedEventArgs args)
         {
             if (!File.Exists("Saves/memory.sav"))
@@ -38,6 +57,7 @@ namespace MemoryGame
                 XmlNode player2Element = saveFile.GetElementsByTagName("player").Item(1);
                 XmlNode cardsElement = saveFile.GetElementsByTagName("cards").Item(0);
 
+                // Check if the save file contains the right elements.
                 if (player1Element == null || player2Element == null || cardsElement == null)
                 {
                     MessageBox.Show("Kon het opslagbestand niet lezen.", "Doorgaan");
@@ -48,6 +68,14 @@ namespace MemoryGame
             }
         }
 
+        /// <summary>
+        ///     The click event for the highscores button.
+        ///     This reads the save file and checks if it exists and it is valid.
+        ///     If it is falid, then it navigates to the highscores screen.
+        ///     And if it's not valid, it shows a messagebox.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void highscoresButton_Click(object sender, RoutedEventArgs args)
         {
             if (!File.Exists("Saves/scores.sav"))
@@ -61,6 +89,7 @@ namespace MemoryGame
 
                 var highscoresElement = saveFile.GetElementsByTagName("highscores").Item(0);
 
+                // Check if the save file contains the right elements.
                 if (highscoresElement == null)
                 {
                     MessageBox.Show("Kon het opslagbestand niet lezen.", "Highscores");
@@ -72,11 +101,23 @@ namespace MemoryGame
             }
         }
 
+        /// <summary>
+        ///     The click event for the shutdown button.
+        ///     This exits the application.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void shutdownButton_Click(object sender, RoutedEventArgs args)
         {
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        ///     The click event for the game rules button.
+        ///     This navigates to the game rules screen.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void gameRulesButton_Click(object sender, RoutedEventArgs args)
         {
             this.parentFrame.Navigate(new GameRules(this.parentFrame));

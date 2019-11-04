@@ -1,39 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <highscores>
   <highscore>
-    <playerName>Spelernaam 1</playerName>
-    <score>690</score>
+    <playerName>Gerrit</playerName>
+    <score>420</score>
   </highscore>
   <highscore>
-    <playerName>Gertrude</playerName>
-    <score>510</score>
-  </highscore>
-  <highscore>
-    <playerName>Spelernaam 1</playerName>
+    <playerName>Gerrit</playerName>
     <score>170</score>
   </highscore>
   <highscore>
-    <playerName>Gerardus</playerName>
+    <playerName>Thijs</playerName>
     <score>100</score>
   </highscore>
   <highscore>
-    <playerName>Spelernaam 1</playerName>
+    <playerName>Gerrit</playerName>
     <score>90</score>
   </highscore>
   <highscore>
-    <playerName>Spelernaam 1</playerName>
+    <playerName>Thijs</playerName>
     <score>80</score>
   </highscore>
   <highscore>
-    <playerName>Jan</playerName>
+    <playerName>Gerrit</playerName>
     <score>70</score>
   </highscore>
   <highscore>
-    <playerName>Gerardus</playerName>
+    <playerName>Thijs</playerName>
     <score>60</score>
   </highscore>
   <highscore>
-    <playerName>Spelernaam 1</playerName>
+    <playerName>Thijs</playerName>
+    <score>60</score>
+  </highscore>
+  <highscore>
+    <playerName>Gerrit</playerName>
     <score>50</score>
+  </highscore>
+  <highscore>
+    <playerName>Thijs</playerName>
+    <score>40</score>
   </highscore>
 </highscores>

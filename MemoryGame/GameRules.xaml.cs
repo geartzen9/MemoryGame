@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MemoryGame
 {
@@ -20,7 +8,13 @@ namespace MemoryGame
     /// </summary>
     public partial class GameRules : Page
     {
+        // The Frame to navigate between pages.
         Frame parentFrame;
+        
+        /// <summary>
+        ///     Initialize the game rules page.
+        /// </summary>
+        /// <param name="parentFrame">The Frame to navigate between pages.</param>
         public GameRules(Frame parentFrame)
         {
             InitializeComponent();
@@ -28,6 +22,11 @@ namespace MemoryGame
             this.parentFrame = parentFrame;
         }
 
+        /// <summary>
+        ///     The click event to return to the main menu.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void returntoMenu_Button(object sender, RoutedEventArgs args)
         {
             this.parentFrame.Navigate(new MainMenu(this.parentFrame));

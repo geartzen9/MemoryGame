@@ -13,14 +13,37 @@ namespace MemoryGame
     /// </summary>
     public partial class GameScreen : Page
     {
+        // The Frame to navigate between pages.
         Frame parentFrame;
-        Player player1, player2;
+
+        // The object of the first player.
+        Player player1;
+
+        // The object of the second player.
+        Player player2;
+
+        // The string that holds the current difficulty.
         string difficulty;
 
-        MemoryGrid grid;
-        private int rowSize = 4, colSize = 4;
+        // The amount of pairs that is left on the grid.
+        int pairs;
 
-        // Constructor to begin a new game.
+        // The grid where the cards are being generated.
+        MemoryGrid grid;
+
+        // The integer to define how much rows are needed in the grid.
+        private int rowSize = 4;
+
+        // The integer to define how much cols are needed in the grid.
+        private int colSize = 4;
+
+        /// <summary>
+        ///     Initialize a new game screen to begin a new game.
+        /// </summary>
+        /// <param name="parentFrame">The Frame to navigate between pages.</param>
+        /// <param name="player1">The object of the first player.</param>
+        /// <param name="player2">The object of the second player.</param>
+        /// <param name="difficulty">The string that holds the current difficulty.</param>
         public GameScreen(Frame parentFrame, Player player1, Player player2, string difficulty)
         {
             InitializeComponent();
@@ -35,7 +58,14 @@ namespace MemoryGame
             grid = new MemoryGrid(this, cardHolder, player1, player2, colSize, rowSize);
         }
 
-        // Constructor to continue a previous game.
+        /// <summary>
+        ///     Initialize a new game screen to continue a previous game.
+        /// </summary>
+        /// <param name="parentFrame">The Frame to navigate between pages.</param>
+        /// <param name="saveFile">The XML save file of the previous game.</param>
+        /// <param name="player1Element">The element of the first player of the previous game.</param>
+        /// <param name="player2Element">The element of the second player of the previous game.</param>
+        /// <param name="cardsElement">The element that contains the status of all cards of the previous game.</param>
         public GameScreen(Frame parentFrame, XmlDocument saveFile, XmlNode player1Element, XmlNode player2Element, XmlNode cardsElement)
         {
             InitializeComponent();
@@ -45,6 +75,7 @@ namespace MemoryGame
             this.player1 = new Player(player1Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player1Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player1Element.ChildNodes.Item(2).InnerText));
             this.player2 = new Player(player2Element.ChildNodes.Item(0).InnerText, Convert.ToInt32(player2Element.ChildNodes.Item(1).InnerText), Convert.ToBoolean(player2Element.ChildNodes.Item(2).InnerText));
             this.difficulty = saveFile.GetElementsByTagName("difficulty").Item(0).InnerText;
+            this.pairs = Convert.ToInt32(saveFile.GetElementsByTagName("pairs").Item(0).InnerText);
 
             SetGridSize(this.difficulty);
 
@@ -53,6 +84,12 @@ namespace MemoryGame
             LoadData(cardsElement);
         }
 
+        /// <summary>
+        ///     The click event of the restart button.
+        ///     This restarts the game to start over.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void RestartButton_Click(object sender, RoutedEventArgs args)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je opnieuw wilt beginnen? Als je dit doet kom je niet op het scorebord.", "Opnieuw beginnen", MessageBoxButton.YesNo);
@@ -71,12 +108,24 @@ namespace MemoryGame
             }
         }
 
+        /// <summary>
+        ///     The click event of the quit and save button.
+        ///     This stops the game and saves the game data to a save file. Then it navigates to the main menu.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void QuitButton_Click(object sender, RoutedEventArgs args)
         {
             SaveData();
             parentFrame.Navigate(new MainMenu(this.parentFrame));
         }
 
+        /// <summary>
+        ///     The click event to exit button.
+        ///     This stops the game and naigates to the main menu without saving.
+        /// </summary>
+        /// <param name="sender">The object that is being clicked on.</param>
+        /// <param name="args">The event arguments.</param>
         private void ExitButton_Click(object sender, RoutedEventArgs args)
         {
             MessageBoxResult result = MessageBox.Show("Als je doorgaat verlies je alle voortgang", "Zeker weten?", MessageBoxButton.YesNo);
@@ -86,19 +135,27 @@ namespace MemoryGame
                 parentFrame.Navigate(new MainMenu(this.parentFrame));
             }
         }
-        
+
+        /// <summary>
+        ///     Load the game data from the save file.
+        /// </summary>
+        /// <param name="cardsElement">The element that contains the status of all cards of the previous game.</param>
         private void LoadData(XmlNode cardsElement)
         {
+            grid.SetPairs(pairs);
             UpdateLabels(player1, player2);
 
+            // Save the amount of cards in the grid.
             int cardsAmount = grid.GetCards().Count;
+
+            // Clear the grid.
             grid.GetGrid().Children.Clear();
             grid.GetCards().Clear();
 
+            // Loop through all cards and change the values of these cards.
             for (int i = 0; i < cardsAmount; i++)
             {
                 grid.ChangeCards(
-                    i,
                     new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(0).InnerText, UriKind.Relative)),
                     new BitmapImage(new Uri(cardsElement.ChildNodes.Item(i).ChildNodes.Item(1).InnerText, UriKind.Relative)),
                     Convert.ToBoolean(cardsElement.ChildNodes.Item(i).ChildNodes.Item(2).InnerText),
@@ -110,16 +167,33 @@ namespace MemoryGame
             grid.ShowCards();
         }
 
+        /// <summary>
+        ///     Save game data to a save file.
+        /// </summary>
         private void SaveData()
         {
+            int cardCount = 0;
+
+            foreach(Card card in grid.GetCards())
+            {
+                if (card.GetVisibility() == true)
+                {
+                    cardCount++;
+                }
+            }
+
+            pairs = cardCount / 2;
+
             // Create a new save file in the "Saves" directory.
             XmlWriter writer = XmlWriter.Create("Saves/memory.sav");
             writer.WriteStartElement("game");
 
             WriteTag(writer, "difficulty", difficulty);
+            WriteTag(writer, "pairs", pairs.ToString());
 
             writer.WriteStartElement("cards");
 
+            // Loop through all the cards on the grid and save their values to the save file.
             for (int i = 0; i < grid.GetCards().Count; i++)
             {
                 writer.WriteStartElement("card");
@@ -146,7 +220,11 @@ namespace MemoryGame
             writer.Close();
         }
 
-        // Saves all properties of a player in the save file.
+        /// <summary>
+        ///     Save all properties of a player in the save file.
+        /// </summary>
+        /// <param name="writer">The XML document to write to.</param>
+        /// <param name="player">The player object that needs to be saved.</param>
         private void SavePlayer(XmlWriter writer, Player player)
         {
             writer.WriteStartElement("player");
@@ -158,6 +236,12 @@ namespace MemoryGame
             writer.WriteEndElement();
         }
 
+        /// <summary>
+        ///     Write a new element to the XML save file.
+        /// </summary>
+        /// <param name="writer">The XML document to write to.</param>
+        /// <param name="elementName">The name of the element that needs to be saved.</param>
+        /// <param name="value">The value that needs to be saved in the element.</param>
         private void WriteTag(XmlWriter writer, string elementName, string value)
         {
             writer.WriteStartElement(elementName);
@@ -165,6 +249,11 @@ namespace MemoryGame
             writer.WriteEndElement();
         }
 
+        /// <summary>
+        ///     Update the labels of the players.
+        /// </summary>
+        /// <param name="player1">The object of the first player.</param>
+        /// <param name="player2">The object of the second player.</param>
         public void UpdateLabels(Player player1, Player player2)
         {
             player1NameLabel.Content = player1.GetName();
@@ -185,8 +274,13 @@ namespace MemoryGame
             }
         }
 
+        /// <summary>
+        ///     Save the player object of the player who has won in a save file.
+        /// </summary>
+        /// <param name="player">The object of the player who has won the game.</param>
         public void SaveHighscores(Player player)
         {
+            // Check if the save exists and is not empty.
             if (!File.Exists("Saves/scores.sav") || new FileInfo("Saves/scores.sav").Length == 0)
             {
                 // Create a new save file in the "Saves" directory.
@@ -219,38 +313,41 @@ namespace MemoryGame
 
                 for (int i = parentNode.ChildNodes.Count - 1; i >= 0; i--)
                 {
-                    Console.WriteLine("player score: " + player.GetScore());
-                    Console.WriteLine("old score: " + parentNode.ChildNodes.Item(i).InnerText);
-
-                    // Als de winner score lager is dan de huidige highscore.
+                    // Check if the winners score is lower than the current highscore.
                     if (Convert.ToInt32(parentNode.ChildNodes.Item(i).ChildNodes.Item(1).InnerText) > player.GetScore())
                     {
-                        // Controleer of de laatste highscore is geselecteerd.
+                        // Check if the last highscore is selected.
                         if (i == parentNode.ChildNodes.Count - 1)
                         {
                             return;
-                        }    
+                        }
 
                         parentNode.InsertAfter(parentElement, parentNode.ChildNodes.Item(i));
+
+                        RemoveLastChildSaveFile(parentNode);
+                        xmlDocument.Save("Saves/scores.sav");
+
+                        return;
                     }
 
+                    // Check if the current highscore is the highest and if the winners score is higher than the current highscore.
                     if (i == 0 && player.GetScore() > Convert.ToInt32(parentNode.ChildNodes.Item(i).ChildNodes.Item(1).InnerText))
                     {
                         parentNode.InsertBefore(parentElement, parentNode.ChildNodes.Item(0));
+
+                        RemoveLastChildSaveFile(parentNode);
+                        xmlDocument.Save("Saves/scores.sav");
+
+                        return;
                     }
                 }
-
-                //parentNode.InsertBefore(parentElement, parentNode.ChildNodes.Item(0));
-
-                if (parentNode.ChildNodes.Count > 10)
-                {
-                    parentNode.RemoveChild(parentNode.LastChild);
-                }
-
-                xmlDocument.Save("Saves/scores.sav");
             }
         }
 
+        /// <summary>
+        ///     Set the size of the grid depending on the difficulty.
+        /// </summary>
+        /// <param name="difficulty">The string that holds the current difficulty.</param>
         public void SetGridSize(string difficulty)
         {
             switch (difficulty)
@@ -270,6 +367,22 @@ namespace MemoryGame
             }
         }
 
+        /// <summary>
+        ///     Check if there are more than 10 highscores in the safe file.
+        /// </summary>
+        /// <param name="parentNode">The root element of the save file.</param>
+        private void RemoveLastChildSaveFile(XmlNode parentNode)
+        {
+            if (parentNode.ChildNodes.Count > 10)
+            {
+                parentNode.RemoveChild(parentNode.LastChild);
+            }
+        }
+
+        /// <summary>
+        ///     Get the frame that is used to navigate between pages.
+        /// </summary>
+        /// <returns>The Frame to navigate between pages.</returns>
         public Frame GetParentFrame()
         {
             return this.parentFrame;

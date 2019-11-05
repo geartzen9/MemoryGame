@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<highscores>
+  <highscore>
+    <playerName>Test 2</playerName>
+    <score>80</score>
+  </highscore>
+  <highscore>
+    <playerName>Testmeneer 1</playerName>
+    <score>70</score>
+  </highscore>
+</highscores>

@@ -27,7 +27,7 @@ namespace MemoryGame
         /// <param name="imgNbr">The number of the image in the current theme.</param>
         public Card(ImageSource frontImgSource, ImageSource backImgSource, int imgNbr)
         {
-            backImg = frontImgSource;
+            backImg = backImgSource;
             frontImg = frontImgSource;
             imgNumber = imgNbr;
             clicked = false;
